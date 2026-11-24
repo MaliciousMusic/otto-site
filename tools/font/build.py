@@ -526,7 +526,7 @@ def master(L):
     gt = fb.font['glyf']
     fb.setupHorizontalMetrics({g: (adv(g), getattr(gt[g], 'xMin', 0) or 0) for g in order})
     fb.setupHorizontalHeader(ascent=1000, descent=-250)
-    fb.setupNameTable({'familyName': 'Otto Cells', 'styleName': 'Bold', 'uniqueFontIdentifier': 'OttoCells-1.000', 'fullName': 'Otto Cells', 'psName': 'OttoCells-Bold', 'version': 'Version 1.000'})
+    fb.setupNameTable({'copyright': 'Copyright 2026 Hadrien Lonjaret', 'licenseDescription': 'All rights reserved. No open licence has been chosen yet.', 'familyName': 'Otto Cells', 'styleName': 'Bold', 'uniqueFontIdentifier': 'OttoCells-1.000', 'fullName': 'Otto Cells', 'psName': 'OttoCells-Bold', 'version': 'Version 1.000'})
     fb.setupOS2(version=4, sTypoAscender=1000, sTypoDescender=-250, sTypoLineGap=0, usWinAscent=1050, usWinDescent=280, sxHeight=XH, sCapHeight=CAP, usWeightClass=700, fsSelection=0x20 | 0x80, achVendID='OTTO')
     fb.setupPost()
     fb.font['head'].macStyle = 1
