@@ -4,7 +4,8 @@
   "tagline": "Artificial life research",
   "language": "en",
   "recordDate": "2026-10-02",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
+  "securityExpires": "2027-11-01",
   "email": "ottoalife@gmail.com",
   "person": { "name": "Hadrien Lonjaret", "url": "https://lonjarethadrien.com/" },
   "social": {
@@ -22,8 +23,8 @@
     "siret": "",
     "address": "",
     "director": "Hadrien Lonjaret",
-    "host": "",
-    "hostAddress": "",
+    "host": "GitHub, Inc. (GitHub Pages)",
+    "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States",
     "hostPhone": ""
   }
 }

@@ -12,8 +12,9 @@ npm run release   # version à publier ; refuse s'il manque l'URL ou une mention
 
 ## Avant la mise en ligne
 
-Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`, `legal.host`, `legal.hostAddress`, `legal.hostPhone`. Puis `npm run release` et publier `dist/`.
-L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`. `_headers` contient les en-têtes de sécurité (format Cloudflare Pages / Netlify).
+Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`, `legal.hostPhone`. Puis `npm run release` et publier `dist/`.
+L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`.
+GitHub Pages n'envoie aucun en-tête réglable : la CSP et la politique de référent sont dans des balises meta. `.well-known/security.txt` est sous le chemin du projet ; renouveler `securityExpires` chaque année (le test échoue 30 jours avant).
 
 ## Où changer quoi
 

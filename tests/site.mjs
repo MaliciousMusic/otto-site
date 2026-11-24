@@ -40,7 +40,7 @@ for (const [f, h] of Object.entries(html)) {
   if (/\{\{|undefined|\[object/.test(h.replace(/<script[\s\S]*?<\/script>/g, ''))) bad(f, 'unrendered value');
   if (Buffer.byteLength(h) > 120000) bad(f, `heavy page ${Buffer.byteLength(h)}`);
 }
-for (const f of ['robots.txt', 'llms.txt', 'llms-full.txt', 'site.webmanifest', '_headers', 'assets/og.png', 'assets/apple-touch-icon.png', 'assets/icon-192.png', 'assets/icon-512.png', 'data/otto-results.json', 'data/tests.csv']) if (!existsSync(join(DIST, f))) bad(join(DIST, f), 'missing');
+for (const f of ['robots.txt', 'llms.txt', 'llms-full.txt', 'site.webmanifest', '.well-known/security.txt', 'assets/og.png', 'assets/apple-touch-icon.png', 'assets/icon-192.png', 'assets/icon-512.png', 'data/otto-results.json', 'data/tests.csv']) if (!existsSync(join(DIST, f))) bad(join(DIST, f), 'missing');
 JSON.parse(readFileSync(join(DIST, 'data/otto-results.json'), 'utf8'));
 assert.deepEqual(problems, []);
 

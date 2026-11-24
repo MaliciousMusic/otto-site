@@ -138,7 +138,9 @@ const schema = (p) => {
 };
 
 // ---- layout
-const CSP = "default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'";
+// GitHub Pages cannot send headers: this policy travels in a meta tag, where frame-ancestors, sandbox and report-uri do not work.
+// Everything is closed except what the pages load. Trusted types forbid any HTML or script sink.
+const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'";
 const NAV = [['map/', 'Map'], ['results/', 'Results'], ['lab/', 'Lab'], ['method/', 'Method'], ['questions/', 'Questions']];
 const MINOR = [['record/', 'Record and data'], ['font/', 'Typeface'], ['legal/', 'Legal notice'], ['privacy/', 'Privacy'], ['terms/', 'Terms'], ['accessibility/', 'Accessibility']];
 const navLink = (p, root, [h, t]) => `<a href="${root}${h}"${p.path === h ? ' aria-current="page"' : ''}>${t}</a>`;
@@ -273,13 +275,9 @@ ${climb.map((c, i) => `${i}. ${c.t} (${c.s})`).join('\n')}
 ${glossary.map(([t, d]) => `- ${t}: ${d}`).join('\n')}
 `);
 writeFileSync(join(DIST, 'site.webmanifest'), JSON.stringify({ name: 'Otto, artificial life research', short_name: 'Otto', start_url: './', display: 'browser', background_color: '#ffffff', theme_color: '#ffffff', icons: [192, 512].map((n) => ({ src: `assets/icon-${n}.png`, sizes: `${n}x${n}`, type: 'image/png' })) }));
-writeFileSync(join(DIST, '_headers'), `/*
-  Content-Security-Policy: ${CSP}; frame-ancestors 'none'
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Strict-Transport-Security: max-age=31536000
-`);
+// A project site on GitHub Pages cannot own the root of its origin, so the file lives under the project path; SECURITY.md and the legal page point to it.
+mkdirSync(join(DIST, '.well-known'), { recursive: true });
+writeFileSync(join(DIST, '.well-known/security.txt'), `Contact: mailto:${cfg.email}\nExpires: ${cfg.securityExpires}T00:00:00.000Z\nPreferred-Languages: en, fr\n${SITE ? `Canonical: ${abs('.well-known/security.txt')}\n` : ''}`);
 
 writeFileSync(join(DIST, '.nojekyll'), '');
 
