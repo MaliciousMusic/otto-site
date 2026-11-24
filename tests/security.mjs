@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import vm from 'node:vm';
 
 const read = (f) => readFileSync(f, 'utf8');
@@ -23,6 +24,10 @@ for (const f of readdirSync('src/js')) {
   assert.doesNotMatch(s, /innerHTML|outerHTML|insertAdjacentHTML|document\.write|createContextualFragment|setHTMLUnsafe|\beval\(|new Function|srcdoc|postMessage|document\.cookie|serviceWorker|importScripts|setTimeout\(\s*['"`]/, f);
 }
 assert.match(read('src/js/map.js'), /Object\.hasOwn\(byId, id\)/);
+// The build empties its output folder: it must refuse any folder outside the project, and the sources.
+for (const out of ['..', '../elsewhere', '.', 'src', '.git', 'tools/font']) assert.equal(spawnSync('node', ['tools/build.mjs', '--quiet', `--out=${out}`]).status, 1, out);
+assert.equal(readFileSync('src/js/main.js').length > 0, true);
+
 // Built pages: one strict policy, set before anything loads; nothing from another host; nothing private published.
 const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
 const files = walk('dist'), cfg = JSON.parse(read('site.config.json'));
@@ -45,6 +50,9 @@ for (const f of files) {
   if (/\.(png|woff2)$/.test(f)) continue;
   assert.doesNotMatch(read(f), /sourceMappingURL|\/home\/|\/Users\/|BEGIN [A-Z ]*PRIVATE KEY|\b(?:sk|rk)_(?:live|test)_|whsec_|AIza[\w-]{30}|gh[pousr]_\w{30}|xox[bp]-|service_role/, f);
 }
+// Without scripts the map is still readable.
+assert.match(read('dist/css/style.css'), /html:not\(\.js\) \.maplist\[hidden\] \{ display: block !important; \}/);
+
 const svg = read('dist/assets/otto.svg');
 assert.doesNotMatch(svg, /<script|\son\w+=|<foreignObject|href="http/i);
 

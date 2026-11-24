@@ -14,7 +14,8 @@ let t;
 for (const d of ['src', 'site.config.json']) watch(join(ROOT, d), { recursive: d === 'src' }, () => { clearTimeout(t); t = setTimeout(build, 150); });
 
 createServer(async (req, res) => {
-  const path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname));
+  let path;
+  try { path = normalize(decodeURIComponent(new URL(req.url, 'http://x').pathname)); } catch { res.writeHead(400).end(); return; }
   const file = join(DIST, path.endsWith('/') ? `${path}index.html` : path);
   const send = (code, body, type) => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store' }); res.end(body); };
   if (!file.startsWith(DIST)) return send(403, 'no', 'text/plain');

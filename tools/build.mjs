@@ -5,7 +5,7 @@
 // --release refuses to build while the URL or a legal fact is missing.
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { dirname, join } from 'node:path';
+import { dirname, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { objectives, links, tests, climb } from '../src/data/map.js';
 import { faq, glossary } from '../src/data/faq.js';
@@ -38,6 +38,11 @@ if (release && missing.length) {
 }
 const todo = (fr) => `<mark class="todo">${fr ? 'À compléter avant la mise en ligne' : 'To be completed before launch'}</mark>`;
 
+// the output folder is emptied first, so it must be inside this project
+if (!DIST.startsWith(ROOT + sep) || ['src', 'tools', 'tests', '.git', '.claude'].includes(DIST.slice(ROOT.length + 1).split(sep)[0])) {
+  console.error(`Refusing to write to ${DIST}`);
+  process.exit(1);
+}
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(join(DIST, 'data'), { recursive: true });
 for (const d of ['assets', 'css', 'js']) cpSync(join(SRC, d), join(DIST, d), { recursive: true });

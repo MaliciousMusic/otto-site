@@ -227,5 +227,6 @@ footer { background: linear-gradient(#fff, var(--sky)); padding: 48px var(--gut)
 }
 html[data-motion=off] { scroll-behavior: auto; } html[data-motion=off] *, html[data-motion=off] *::before, html[data-motion=off] *::after { animation: none !important; transition: none !important; }
 @media (prefers-reduced-motion: reduce) { html:not(.js) * { animation: none !important; transition: none !important; } }
+html:not(.js) .maplist[hidden] { display: block !important; } html:not(.js) .mapgrid, html:not(.js) .bar { display: none; }
 @media (forced-colors: active) { .skin, .dish, .drop, .edge { forced-color-adjust: none; } .seg button[aria-pressed=true], .chip[aria-pressed=true], .guess button[aria-pressed=true] { outline: 3px solid; } }
 @media print { .top, .nextpage, .controls, .bar, footer ul { display: none; } }
