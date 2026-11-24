@@ -8,12 +8,15 @@ npm test          # 769 exécutions rejouées + contrôle de toutes les pages
 npm run build     # version brouillon dans dist/ (noindex tant qu'il n'y a pas d'URL)
 npm run preview   # version en ligne provisoire (GitHub Pages, branche gh-pages), noindex
 npm run release   # version à publier ; refuse s'il manque l'URL ou une mention légale
+npm run deploy    # teste, construit et prépare le commit gh-pages par-dessus le précédent (n'envoie rien sans -- --push)
+npm run rollback  # prépare le retour à la version publiée d'avant
+npm run check-live # quelques lectures du site public
 ```
 
 ## Avant la mise en ligne
 
-Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`, `legal.hostPhone`. Puis `npm run release` et publier `dist/`.
-L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`.
+Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`. Remettre `person.url` (https://lonjarethadrien.com/) quand ce site répond. Puis `npm run release` et publier `dist/`.
+Tant qu'une mention manque, toutes les pages restent en noindex, même avec une URL. L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`.
 GitHub Pages n'envoie aucun en-tête réglable : la CSP et la politique de référent sont dans des balises meta. `.well-known/security.txt` est sous le chemin du projet ; renouveler `securityExpires` chaque année (le test échoue 30 jours avant).
 
 ## Où changer quoi
@@ -33,7 +36,7 @@ Dépôt privé Powii, branche `research/g02-semantic-identifiability-v1` (G02-ME
 
 ## Police Otto Cells
 
-Dessinée en code : `python3 tools/font/build.py` (fontTools + brotli) écrit `src/assets/fonts/otto-cells-vf.woff2`.
+Dessinée en code : `python3 tools/font/build.py` (versions dans `tools/font/requirements.txt`) écrit `src/assets/fonts/otto-cells-vf.woff2`.
 Axes : `wght` 400-700, `FACE` (0 par défaut, 1 = visages), `BLKA/B/C` (paupières), `GAZX/GAZY` (regard), `MOOD` (humeur). Classe `.alive` sur le site.
 
 Texte courant : Jost (OFL, licence dans `src/assets/fonts/`).
