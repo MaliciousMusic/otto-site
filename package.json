@@ -7,6 +7,6 @@
     "build": "node tools/build.mjs",
     "preview": "SITE_URL=https://maliciousmusic.github.io/otto-site node tools/build.mjs --preview",
     "release": "node tools/build.mjs --release",
-    "test": "node tests/replay.mjs && node tools/build.mjs --quiet && node tests/site.mjs"
+    "test": "node tests/replay.mjs && node tools/build.mjs --quiet && node tests/site.mjs && node tests/security.mjs"
   }
 }

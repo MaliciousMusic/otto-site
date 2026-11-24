@@ -270,7 +270,7 @@ export function map() {
   const open = () => {
     const id = location.hash.slice(1);
     if (id === 'list') view('list');
-    else if (byId?.[id]) { pick(id); reveal(id); }
+    else if (byId && Object.hasOwn(byId, id)) { pick(id); reveal(id); }
   };
   build(); open();
   addEventListener('hashchange', open);
