@@ -20,15 +20,16 @@
   },
   "legal": {
     "editor": "Hadrien Lonjaret EI",
-    "siret": "",
-    "address": "",
-    "phone": "",
+    "siret": "853 801 488 00026",
+    "address": "35 cours Sablon, 63000 Clermont-Ferrand, France",
+    "phone": "+33 7 43 72 90 32",
     "director": "Hadrien Lonjaret",
     "host": "GitHub, Inc. (GitHub Pages)",
     "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States",
     "hostPhone": "None published by GitHub. Contact: support.github.com/contact"
   },
   "legalFr": {
+    "phone": "07 43 72 90 32",
     "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
     "hostPhone": "Non publié par GitHub. Contact : support.github.com/contact"
   }

@@ -53,6 +53,14 @@ assert.match(page('record'), /Upcoming: not started, no evidence yet/);
 assert.match(page('record'), /Upcoming, not run/);
 assert.match(page('record'), /Licence: upcoming/);
 assert.match(page('accessibility'), /Screen reader tests are upcoming/);
+// Publisher identity: complete, valid number, in both languages.
+const legal = JSON.parse(readFileSync('site.config.json', 'utf8')).legal;
+if (legal.siret) {
+  const n = legal.siret.replace(/ /g, ''), sum = [...n].reverse().reduce((t, c, i) => t + (i % 2 ? (c * 2 > 9 ? c * 2 - 9 : c * 2) : +c), 0);
+  assert.match(n, /^\d{14}$/); assert.equal(sum % 10, 0, 'SIRET check digit');
+  assert.equal(page('legal').split(legal.siret).length - 1, 2);
+  assert.equal(page('legal').split(legal.address).length - 1, 2);
+}
 const { person } = JSON.parse(readFileSync('site.config.json', 'utf8'));
 for (const h of Object.values(html)) assert.equal(h.includes(`href="${person.url}"`), !person.upcoming);
 assert.deepEqual(problems, []);
