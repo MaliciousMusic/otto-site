@@ -141,7 +141,7 @@ export function lab() {
 
   const h = new URLSearchParams(location.hash.slice(1));
   if (h.has('seed')) {
-    const num = (k, lo, hi, d) => { const v = Math.round(+h.get(k)); return v >= lo && v <= hi ? v : d; };
+    const num = (k, lo, hi, d) => { const v = h.has(k) ? Math.round(+h.get(k)) : NaN; return v >= lo && v <= hi ? v : d; };
     c = { seed: num('seed', 0, 4294967295, 183742), n: [32, 64, 128].includes(+h.get('n')) ? +h.get('n') : 32, p: num('p', 5, 95, 25), order: h.get('order') === 'seq' ? 'seq' : 'sync', rule: num('rule', 0, 255, 232) };
   }
   t = h.has('seed') ? 0 : 6;

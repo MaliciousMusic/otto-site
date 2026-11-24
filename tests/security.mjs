@@ -2,7 +2,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { get } from 'node:http';
 import vm from 'node:vm';
 
 const read = (f) => readFileSync(f, 'utf8');
@@ -56,8 +57,29 @@ assert.match(read('dist/css/style.css'), /html:not\(\.js\) \.maplist\[hidden\] \
 const svg = read('dist/assets/otto.svg');
 assert.doesNotMatch(svg, /<script|\son\w+=|<foreignObject|href="http/i);
 
+// Workflows: read-only, actions pinned by commit, no secret, no untrusted text in a command.
+for (const f of readdirSync('.github/workflows')) {
+  const y = read(join('.github/workflows', f));
+  assert.match(y, /^permissions:\n  contents: read$/m, f);
+  assert.doesNotMatch(y, /: write|secrets\.|pull_request_target|workflow_run/, f);
+  for (const [, a] of y.matchAll(/uses: (\S+)/g)) assert.match(a, /@[0-9a-f]{40}$/, a);
+  assert.doesNotMatch(y, /run:.*\$\{\{/, f);
+}
+assert.doesNotMatch(read('tools/deploy.mjs'), /--force|'-f',\s*'origin|\+\$\{commit/);
+
 // security.txt: a contact, and an expiry between one month and one year away.
 const st = read('dist/.well-known/security.txt'), days = (Date.parse(st.match(/^Expires: (.+)$/m)?.[1]) - Date.now()) / 864e5;
 assert.ok(st.includes(`Contact: mailto:${cfg.email}\n`));
 assert.ok(days > 30 && days < 366, `security.txt expires in ${Math.round(days)} days: renew securityExpires in site.config.json`);
+// The font trial shows its focus.
+assert.match(read('dist/css/font.css'), /#try:focus-visible \{ outline: 3px/);
+
+// The local server answers badly formed and out-of-folder addresses without falling over.
+const server = spawn('node', ['tools/serve.mjs', '4597'], { stdio: ['ignore', 'pipe', 'inherit'] });
+try {
+  await new Promise((ok) => server.stdout.on('data', (d) => /localhost/.test(d) && ok()));
+  const status = (path) => new Promise((ok) => get({ host: '127.0.0.1', port: 4597, path }, (r) => { r.resume(); ok(r.statusCode); }));
+  for (const [path, code] of [['/%E0%A4%A', 400], ['/../package.json', 404], ['/..%2fpackage.json', 404], ['/%2e%2e/%2e%2e/etc/passwd', 404], ['/', 200]]) assert.equal(await status(path), code, path);
+} finally { server.kill(); }
+
 console.log('ok: stored values, no HTML or code sinks, content policy, published files, security.txt');
