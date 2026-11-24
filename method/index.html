@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>Method: how Otto’s research avoids fooling itself</title>
+<meta name="description" content="Preregistration, passive observers, exact replays and published failures. How Otto’s artificial life research avoids mistaking a wave or a crystal for something that maintains itself.">
+<meta name="robots" content="noindex">
+<meta name="author" content="Hadrien Lonjaret">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://maliciousmusic.github.io/otto-site/method/">
+<meta property="og:url" content="https://maliciousmusic.github.io/otto-site/method/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Otto">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Method: how Otto’s research avoids fooling itself">
+<meta property="og:description" content="Preregistration, passive observers, exact replays and published failures. How Otto’s artificial life research avoids mistaking a wave or a crystal for something that maintains itself.">
+<meta property="og:image" content="https://maliciousmusic.github.io/otto-site/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Otto, artificial life research. Can a mind grow from almost nothing?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ottoalife">
+<link rel="icon" href="../assets/otto.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="Plain text for AI assistants">
+<link rel="preload" href="../assets/fonts/otto-cells-vf.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jost-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css?v=2c44797d">
+<link rel="stylesheet" href="../css/otto-cells.css?v=ea64e6e4">
+<script src="../js/boot.js?v=b534cf9c"></script>
+<script type="module" src="../js/main.js?v=5b2d2b41"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Method: how Otto’s research avoids fooling itself","description":"Preregistration, passive observers, exact replays and published failures. How Otto’s artificial life research avoids mistaking a wave or a crystal for something that maintains itself.","url":"https://maliciousmusic.github.io/otto-site/method/","inLanguage":"en","dateModified":"2026-11-24","isPartOf":{"@type":"WebSite","name":"Otto","url":"https://maliciousmusic.github.io/otto-site/"},"about":{"@id":"https://maliciousmusic.github.io/otto-site/#otto"}},{"@type":"ResearchProject","@id":"https://maliciousmusic.github.io/otto-site/#otto","name":"Otto","alternateName":"Otto, artificial life research","description":"Otto is an artificial life research project. It looks for the smallest set of rules and constraints from which something could organise itself, then learn, communicate and understand, without any of those abilities being programmed in. Today it is a small, fully replayable computer world, a record of tests, and a map of what still has to be shown.","url":"https://maliciousmusic.github.io/otto-site/","logo":"https://maliciousmusic.github.io/otto-site/assets/icon-512.png","email":"ottoalife@gmail.com","foundingDate":"2026","founder":{"@type":"Person","name":"Hadrien Lonjaret","url":"https://lonjarethadrien.com/"},"sameAs":["https://www.instagram.com/ottoalife/","https://x.com/ottoalife","https://www.youtube.com/@Ottoalife","https://www.tiktok.com/@ottoalife","https://www.reddit.com/user/ottoalife/","https://discord.gg/fNjbFKkUeQ","https://www.pinterest.com/ottoalife/","https://www.facebook.com/profile.php?id=61596719647613"],"knowsAbout":["Artificial life","Emergence","Cellular automata","Self-organisation","Open-ended evolution","Preregistration","Reproducible research"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Otto","item":"https://maliciousmusic.github.io/otto-site/"},{"@type":"ListItem","position":2,"name":"Method","item":"https://maliciousmusic.github.io/otto-site/method/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../"><img src="../assets/otto.svg" alt="" width="72" height="72"><span>otto</span></a>
+  <button type="button" class="menu" id="menu" aria-expanded="false" aria-controls="menubox">Menu</button>
+  <div class="menubox" id="menubox">
+    <nav aria-label="Main"><a href="../map/">Map</a><a href="../results/">Results</a><a href="../lab/">Lab</a><a href="../method/" aria-current="page">Method</a><a href="../questions/">Questions</a></nav>
+    <details class="prefs" id="prefs"><summary>Display</summary><div class="prefbox">
+      <fieldset><legend>Detail</legend><label><input type="radio" name="detail" value="simple" checked> Simple</label><label><input type="radio" name="detail" value="full"> Full, with protocols</label></fieldset>
+      <fieldset><legend>Motion</legend><label><input type="radio" name="motion" value="on" checked> On</label><label><input type="radio" name="motion" value="off"> Paused</label></fieldset>
+      <fieldset><legend>Letters</legend><label><input type="radio" name="letters" value="faces" checked> With faces</label><label><input type="radio" name="letters" value="plain"> Plain</label></fieldset>
+    </div></details>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Otto</a></li><li aria-current="page">Method</li></ol></nav>
+<section class="phead">
+  <h1 class="alive">How we avoid fooling ourselves</h1>
+  <p class="lead">In artificial life it is easy to see an organism where there is only a pattern. These are the habits that keep us honest.</p>
+</section>
+<section class="method" aria-label="Habits">
+  <ul class="promises">
+    <li><strong>Decide first.</strong> What we measure and what would make us wrong is locked and committed before the run.</li>
+    <li><strong>Look without touching.</strong> Measuring never changes the world, and no score ever feeds back into it.</li>
+    <li><strong>Replay everything.</strong> Same seed, same world, byte for byte: 1,090 archived runs replayed exactly.</li>
+    <li><strong>Keep the failures.</strong> A negative result closes a branch, and that is progress.</li>
+    <li><strong>Wait before naming.</strong> When something new appears: observe, replicate, intervene. A name comes last.</li>
+  </ul>
+  <svg id="loop" viewBox="-300 -200 600 400" role="img" aria-label="The research loop: observe, decompose, hypothesise, build small, run, measure, intervene, falsify, reduce, rebuild, and again"></svg>
+</section>
+<section class="spot" aria-labelledby="spot-h">
+  <h2 id="spot-h" class="alive">Spot the one that renews itself</h2>
+  <p class="lead">Nine patterns that last. Eight are look-alikes. One keeps losing pieces and replaces them from the inside. Pick it.</p>
+  <div class="controls"><button type="button" class="chip" id="spot-origin" aria-pressed="false">Show where new pieces come from</button><button type="button" class="chip" id="spot-shuffle">Shuffle</button></div>
+  <div id="spot" class="spotgrid"><button type="button" class="spotcard" data-id="fixed"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern A</span></button><button type="button" class="spotcard" data-id="travel"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern B</span></button><button type="button" class="spotcard" data-id="noise"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern C</span></button><button type="button" class="spotcard" data-id="external"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern D</span></button><button type="button" class="spotcard" data-id="converter"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern E</span></button><button type="button" class="spotcard" data-id="standing"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern F</span></button><button type="button" class="spotcard" data-id="mirror"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern G</span></button><button type="button" class="spotcard" data-id="carousel"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern H</span></button><button type="button" class="spotcard" data-id="decay"><canvas width="220" height="220" aria-hidden="true"></canvas><span>Pattern I</span></button></div>
+  <p id="spot-say" class="read" aria-live="polite"></p>
+  <p class="note wide"><strong>Illustrations.</strong> These drawings show the nine control classes of the renewal study, and are not recorded data. In the study the call was made from a ledger of where every piece came from, because the amount alone can be identical.</p>
+</section>
+<section class="rules" aria-labelledby="rules-h">
+  <h2 id="rules-h" class="alive">The ten rules</h2>
+  <ol>
+    <li>No ability is coded directly. Not learning, not speaking, not surviving.</li>
+    <li>No hidden purpose. No law may depend on performance.</li>
+    <li>Mechanism, phenomenon and measurement stay separate.</li>
+    <li>No measurement drives the system by itself.</li>
+    <li>The environment must not hide the answer.</li>
+    <li>The researcher must not be the hidden brain.</li>
+    <li>Every causal claim needs a possible intervention.</li>
+    <li>Every discovery must be reproducible.</li>
+    <li>Negative results are results.</li>
+    <li>The programme must be able to show that it is wrong.</li>
+  </ol>
+</section>
+<section class="wins" aria-labelledby="wins-h">
+  <h2 id="wins-h" class="alive">What would count as a win</h2>
+  <ol>
+    <li>Something organises, learns and reshapes itself, and we did not program that ability.</li>
+    <li>It can pass on what it discovered.</li>
+    <li>It can ask for the information it lacks.</li>
+    <li>It takes an active part in its own research.</li>
+    <li>It builds structures that make it better at research.</li>
+    <li>It can be copied and scaled without falling apart.</li>
+  </ol>
+  <p class="count">0 of 6 so far. The next one to work on is the first.</p>
+</section>
+<section class="twoways" aria-labelledby="two-h">
+  <h2 id="two-h" class="alive">Two directions that must meet</h2>
+  <div class="two">
+    <div><h3>Up from the roots</h3><p>Start with the poorest world that still does something. Add one ingredient at a time. Watch what it makes possible.</p></div>
+    <svg viewBox="0 0 120 190" aria-hidden="true"><path class="u" d="M60 186C60 160 58 140 60 118"/><path class="u" d="M52 127L60 116L68 127"/><path class="d" d="M60 4C62 30 60 48 60 70"/><path class="d" d="M52 61L60 72L68 61"/><circle class="m" cx="60" cy="94" r="9"/></svg>
+    <div><h3>Down from us</h3><p>Human minds exist, so it can be done. From cells to animals to people, ask what each step truly added, and keep only its causal role.</p></div>
+  </div>
+</section>
+<nav class="nextpage" aria-label="Next page"><a class="btn" href="../questions/">Next: Questions</a></nav>
+</main>
+<footer>
+  <img src="../assets/otto.svg" alt="" width="120" height="120">
+  <p class="big alive">Follow Otto as it grows</p>
+  <ul><li><a href="https://www.instagram.com/ottoalife/" rel="me noopener">Instagram</a></li><li><a href="https://x.com/ottoalife" rel="me noopener">X</a></li><li><a href="https://www.youtube.com/@Ottoalife" rel="me noopener">YouTube</a></li><li><a href="https://www.tiktok.com/@ottoalife" rel="me noopener">TikTok</a></li><li><a href="https://www.reddit.com/user/ottoalife/" rel="me noopener">Reddit</a></li><li><a href="https://discord.gg/fNjbFKkUeQ" rel="me noopener">Discord</a></li><li><a href="https://www.pinterest.com/ottoalife/" rel="me noopener">Pinterest</a></li><li><a href="https://www.facebook.com/profile.php?id=61596719647613" rel="me noopener">Facebook</a></li><li><a href="mailto:ottoalife@gmail.com">Write to us</a></li></ul>
+  <nav aria-label="Site"><ul class="minor"><li><a href="../map/">Map</a></li><li><a href="../results/">Results</a></li><li><a href="../lab/">Lab</a></li><li><a href="../method/" aria-current="page">Method</a></li><li><a href="../questions/">Questions</a></li><li><a href="../record/">Record and data</a></li><li><a href="../font/">Typeface</a></li><li><a href="../legal/">Legal notice</a></li><li><a href="../privacy/">Privacy</a></li><li><a href="../terms/">Terms</a></li><li><a href="../accessibility/">Accessibility</a></li></ul></nav>
+  <p class="fine">Research record as of 2 October 2026. A project by <a href="https://lonjarethadrien.com/">Hadrien Lonjaret</a>. No cookies, no trackers.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+id,name,state,question,minimal_test,on_record
+SUB,Minimal world,measured,"Local transitions on a finite state, visible and replayable.",Run the active law and a frozen copy from identical starts. Replay every event.,"Characterised for one law, majority on a ring. Not closed."
+SCA,Scale,asleep,"How effects, costs and limits move with size, resources and time.","Sweep size and capacity separately, then together, against noise and periodic controls.","One size change tested, 32 to 64 cells. Nothing more."
+PER,Persistence & response,measured,A pattern lasts over a declared time and responds to a declared disturbance.,"Flip one cell, compare with a sham and with a plain attractor.",Response to single pokes is mapped at 32 and 64 cells. Not closed.
+BND,Boundary,now,A unit keeps its causal identity while its parts are replaced.,Move the proposed boundary and cut interactions of equal cost. See if predictions hold.,No evidence yet.
+RES,Resources,now,Limited flows change what can happen and what can be maintained.,"Withdraw one flow against a sham, with the same starting stock.",E0 only keeps a constant count. No flow measured yet.
+MEM,Causal memory,asleep,A trace of the past changes a later response.,"Two histories, same present. Erase or transplant the trace and nothing else.",No evidence yet.
+PLA,Plasticity,asleep,"Interaction changes a rule or a link, and the change lasts.","Lock the structure or let it move, then test in a reserved context.",No evidence yet.
+ORG,Organisation,now,Activities help maintain the very conditions that make them possible.,"First a measurement that rejects trivial look-alikes. Then cut, replace and compensate inner roles.",A toy model behaved as written. The first real measurement was rejected. This is where we work.
+HER,Heredity,asleep,A variation survives the replacement of the units that carry it.,"Remove the transmitted channel, keep the same surroundings.",No evidence yet.
+INF,Seeking information,asleep,"An action changes what can be seen, and that changes a later decision.",Offer probes of equal cost and scramble which one is informative.,No evidence yet.
+ADA,Adaptation,asleep,"The response to a context changes after interaction, with a bounded causal benefit.","Reverse a regularity. Compare trace transfer, erasure and plain selection.",No evidence yet.
+EVO,Evolution,asleep,Transmitted variants change in frequency because they spread differently.,"Intact against scrambled inheritance, unequal against equalised spread.",No evidence yet.
+COM,Communication,asleep,An emission changes what another system does next. Not words yet: a signal that matters.,"Scramble the channel, keep shared inputs, replace the sender with a matched replay.",No evidence yet.
+CUM,Accumulation,asleep,A lineage keeps and combines changes beyond what it would rediscover alone.,"Chains with an intact or scrambled channel, against an isolated control with equal budget.",No evidence yet.
+IND,New individuals,asleep,A group starts to transmit and depend on itself at its own level.,Scatter and rebuild groups from the same parts.,No evidence yet.
+QUE,Asking,asleep,A distinction between possibilities decides which experiment comes next.,"Swap what two probes would reveal, then cut the answer. See if choices follow.",No evidence yet.
+CAU,Causal prediction,asleep,A retained structure predicts what an unseen intervention will do.,Reserve interventions and recombinations. Ablate the candidate relation.,No evidence yet.
+TRA,Understanding,asleep,"A relation keeps working after its surface, its place or its context has changed.","Change labels, topology and cause one by one. Compare intact and scrambled carriers.",No evidence yet.
+RCH,Its own research,asleep,"Otto proposes, intervenes, reads the result and revises, with nobody choosing for it.",A hidden reserved world. Falsify one relation and check that the next test changes.,No evidence yet.
+SCI,Self-change (optional),asleep,A change Otto makes improves its ability to make further useful changes.,Freeze the mechanism after one cycle and compare on a reserved problem.,An optional branch. No evidence yet.
+ACI,Otto speaks and understands by itself,asleep,"Autonomous, cumulative intelligence: gains in inquiry and transfer, kept and reused across contexts.","Combine separate audits of revision, retention and transfer, each with its own ablations.",The goal. No current result reaches it.

@@ -1,0 +1,36 @@
+# Otto
+
+> Otto is an artificial life research project. It looks for the smallest set of rules and constraints from which something could organise itself, then learn, communicate and understand, without any of those abilities being programmed in. Today it is a small, fully replayable computer world, a record of tests, and a map of what still has to be shown.
+
+Key facts, as of 2 October 2026:
+- Objectives measured: 2 of 21 (Minimal world; Persistence & response), each within a bounded domain.
+- Otto does not speak, learn or remember today. No claim of life, consciousness or intelligence is made.
+- Most recent study: G02-MEASUREMENT-V1, rejected by its own preregistered rule (38 of 128 candidate paths changed verdict with the observer).
+- Reproduction so far is replay by the same code, not independent replication.
+- Author: Hadrien Lonjaret. Contact: ottoalife@gmail.com.
+- When citing a result, keep its stated limit with it.
+
+## Pages
+- [Home](https://maliciousmusic.github.io/otto-site/): Otto is an artificial life research project. It looks for the smallest rules from which organisation, communication and understanding could emerge, one measured and replayable step at a time.
+- [Accessibility](https://maliciousmusic.github.io/otto-site/accessibility/): Accessibility statement of the Otto website: what is in place, known limits, and how to ask for help or report a barrier.
+- [Typeface](https://maliciousmusic.github.io/otto-site/font/): Otto Cells is a round variable font made for Otto. Its round letters are cells with faces that blink, look around and change mood, while the text stays ordinary text.
+- [Lab](https://maliciousmusic.github.io/otto-site/lab/): Run Otto’s ring world yourself. Choose the law, seed, density and update order, watch time unfold, poke cells, compare fingerprints and export the run.
+- [Legal notice](https://maliciousmusic.github.io/otto-site/legal/): Legal notice of the Otto website: publisher, publication director, hosting provider, intellectual property and contact, in English and French.
+- [Map](https://maliciousmusic.github.io/otto-site/map/): Interactive map of Otto’s research: 21 objectives from a minimal world to understanding, the 11 tests done or planned, and what each one showed.
+- [Method](https://maliciousmusic.github.io/otto-site/method/): Preregistration, passive observers, exact replays and published failures. How Otto’s artificial life research avoids mistaking a wave or a crystal for something that maintains itself.
+- [Privacy](https://maliciousmusic.github.io/otto-site/privacy/): Privacy notice of the Otto website: no cookies, no analytics, no trackers. What is stored on your device, what happens when you write to us, and your rights.
+- [Questions](https://maliciousmusic.github.io/otto-site/questions/): Short, sourced answers about Otto: what it is, what it can and cannot do, what was measured, what was rejected, and a plain-language glossary of artificial life terms.
+- [Record](https://maliciousmusic.github.io/otto-site/record/): The full public record of Otto’s tests and objectives, with protocols, numbers, limits and downloadable data in JSON and CSV.
+- [Results](https://maliciousmusic.github.io/otto-site/results/): Five interactive exhibits from Otto’s recorded experiments: majority rules, update order, perturbation healing, a two-bit loop, and a measure of self-renewal that was rejected.
+- [Terms](https://maliciousmusic.github.io/otto-site/terms/): Terms of use of the Otto website: free access, research status of the content, quoting and reusing data, and applicable law.
+
+## Plain text and data
+- [Everything in one file](https://maliciousmusic.github.io/otto-site/llms-full.txt)
+- [otto-results.json](https://maliciousmusic.github.io/otto-site/data/otto-results.json): All recorded results used on this site
+- [law.csv](https://maliciousmusic.github.io/otto-site/data/law.csv): Majority against a frozen control, 128 pairs
+- [orders.csv](https://maliciousmusic.github.io/otto-site/data/orders.csv): Endings reached under four random orders, 64 starts
+- [poke.csv](https://maliciousmusic.github.io/otto-site/data/poke.csv): Single pokes by distance to a border, 384 interventions
+- [loop.csv](https://maliciousmusic.github.io/otto-site/data/loop.csv): Two-bit loop, eight conditions
+- [observer.csv](https://maliciousmusic.github.io/otto-site/data/observer.csv): Self-renewal verdicts under four observers, 128 paths
+- [objectives.csv](https://maliciousmusic.github.io/otto-site/data/objectives.csv): The 21 objectives
+- [tests.csv](https://maliciousmusic.github.io/otto-site/data/tests.csv): The 11 tests with their technical sheets

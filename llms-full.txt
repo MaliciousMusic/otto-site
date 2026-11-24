@@ -1,0 +1,332 @@
+# Otto, full public record
+
+State of 2 October 2026. Author: Hadrien Lonjaret.
+
+## Questions and answers
+
+### What is Otto?
+Otto is an artificial life research project. It looks for the smallest set of rules and constraints from which something could organise itself, then learn, communicate and understand, without any of those abilities being programmed in. Today it is a small, fully replayable computer world, a record of tests, and a map of what still has to be shown.
+
+### Is Otto an AI or a chatbot?
+No. There is no language model, no training data, no reward and no goal inside Otto. The current world is a ring of cells that each copy the majority around them. The aim is to find out what such a world needs before anything like intelligence could appear by itself.
+
+### Can Otto speak or understand?
+Not today. Speaking and understanding by itself is the goal at the top of the map. Two of 21 objectives, the minimal world and its persistence, have been measured, each in a small domain. Communication, questioning and understanding have no evidence yet.
+
+### What counts as emergence here?
+A new ability counts only if it was not programmed, was not hidden in the world, was not supplied by an outside helper, can be reproduced, carries over to new conditions, and has an identified cause.
+
+### Why start with such a simple world?
+Because a simple world cannot hide an answer. The majority rule is well known, so it serves as a calibration: it shows that the engine, the measurements and the replays can be trusted before anything harder is tried.
+
+### What has been measured so far?
+The rule gathers cells into fewer groups in 64 of 64 matched worlds, at two densities. The order of updates alone changes the ending in 56 of 64 worlds. A single poke is repaired exactly when it lands two or more cells from a border, and changes the ending otherwise, at 32 and 64 cells. A two-bit loop behaved as written. One measure of self-renewal was rejected.
+
+### Why publish a rejected measure?
+Because it is a result. The measure caught all 198 look-alike paths, but 38 of 128 candidate paths changed verdict when the observer looked at another time or with another step. The rule, fixed before the run, was that a verdict must not depend on the observer, so the measure was dropped and the next test stays blocked.
+
+### How is this different from training a neural network?
+Training pushes a system toward a score chosen by people. Otto has no score. Measurements look at the world from outside and never feed back into it, so nothing can drift toward what the researcher hopes to see.
+
+### Are the results reproducible?
+The 1,090 archived runs of the ring world replay byte for byte. The 327 paths of the renewal study do so only in the environment that recorded them: under another Python version, 198 of them differ by at most 7.1e-15, and none of the 2,943 verdicts changes. These are replays by the same code. No independent implementation has reproduced them yet, and the record says so. The small engine on this site is a separate port of the ring world that lands where 769 recorded runs landed.
+
+### Is Otto alive or conscious?
+Nothing in the record supports that, and the project does not claim it.
+
+### What happens next?
+Deciding what it means for a system to maintain a condition over time, in a way that does not depend on when the observer looks. No new run starts before that is settled.
+
+### Who is behind Otto?
+Otto is solo research by Hadrien Lonjaret, started in 2026.
+
+### Is the code open?
+The research code is private for now and no licence has been chosen. The recorded results shown on this site can be downloaded as JSON and CSV from the record page.
+
+### Why does serious research look this cute?
+So that people stay long enough to see how careful it is. The faces carry meaning too: a smile means measured, a round mouth means a question in progress, closed eyes mean not started.
+
+## Tests
+
+### First run (E0-v2)
+Verdict: Holds, within its domain. Outcome: replays.
+Question: One world of 32 cells, 128 steps. Can it be replayed exactly?
+Result: Yes. Events, measures and summary match byte for byte. One seed only, so it says nothing general.
+Design: One trajectory. N = 32, density 0.25, seed 183742, 128 synchronous steps.
+Numbers: Occupancy 0.34375 to 0.1875. Resource total 32 at both ends. Events, metrics and summary match byte for byte.
+Limit: One seed, no control.
+Bears on: Minimal world.
+
+### Law 25% (E0-law-ablation-v1)
+Verdict: Holds, within its domain. Outcome: 64/64.
+Question: Does the law do anything compared with a frozen world? Sparse start.
+Result: Fewer groups in all 64 pairs. Mean change −4.27 (95% interval −4.67 to −3.86).
+Design: 64 matched pairs, seeds 183743 to 183806. N = 32, density 0.25, 128 steps, majority against a frozen control.
+Numbers: Mean paired change in groups −4.265625, 95% t interval [−4.671690, −3.859560]. Negative in 64 of 64.
+Limit: One law, one size, one density.
+Bears on: Minimal world.
+
+### Law 50% (E0-p50-law-ablation-v1)
+Verdict: Holds, within its domain. Outcome: 64/64.
+Question: Same question, balanced start.
+Result: Fewer groups in all 64 pairs. Mean change −5.45 (95% interval −5.92 to −4.98).
+Design: 64 matched pairs, seeds 183807 to 183870. N = 32, density 0.5, 128 steps, majority against a frozen control.
+Numbers: Mean paired change in groups −5.453125, 95% t interval [−5.921882, −4.984368]. Negative in 64 of 64.
+Limit: One law, one size, one density.
+Bears on: Minimal world.
+
+### All at once? (E0-update-schedule-v1)
+Verdict: Holds, within its domain. Outcome: 49/64.
+Question: Does it matter if cells update together or one by one?
+Result: Yes. 49 of 64 matched starts end elsewhere (95% interval 65% to 85%).
+Design: The 64 starts of the previous test, synchronous against one random sequential order each.
+Numbers: 49 of 64 endings differ, 0.765625, Wilson 95% [0.648667, 0.852501].
+Limit: One order per start.
+Bears on: Minimal world.
+
+### Four orders (E0-sequential-order-replicates-v1)
+Verdict: Holds, within its domain. Outcome: 56/64.
+Question: Same start, four random orders. One ending or several?
+Result: Several for 56 of 64 starts. 2.67 endings on average, a lower bound.
+Design: The same 64 starts, four independent random orders each, order seeds 910000 to 910255.
+Numbers: 56 of 64 starts reach several endings, 0.875, Wilson 95% [0.772254, 0.935278]. Mean 2.671875 endings.
+Limit: Four orders give a lower bound.
+Bears on: Minimal world.
+
+### One poke (E0-single-flip-response-v1)
+Verdict: Holds, within its domain. Outcome: 35/64.
+Question: Flip one cell of a settled world. Does it come back?
+Result: 35 of 64 end elsewhere, 29 are restored exactly. The link with borders was noticed after the fact, so it was retested.
+Design: 64 settled worlds, one flip at tick 8, target = seed mod 32.
+Numbers: 35 of 64 endings change, 0.546875, Wilson 95% [0.425736, 0.662706]. 29 return exactly.
+Limit: The link with borders was seen afterwards, then retested.
+Bears on: Persistence & response.
+
+### Poke 32 cells (E0-interface-distance-response-v1)
+Verdict: Holds, within its domain. Outcome: 64·64·0.
+Question: Registered in advance: does the distance to a border decide?
+Result: At distance 0 and 1, all 64 change. At distance 2 or more, none does.
+Design: 64 settled worlds at N = 32, three flips each, at border distance 0, 1 and 2 or more. Registered in advance.
+Numbers: 64/64, 64/64 and 0/64 endings change. Wilson 95% [0.9434, 1] near, [0, 0.0566] far.
+Limit: Lowest eligible cell only. One law, one density.
+Bears on: Persistence & response.
+
+### Poke 64 cells (E0-interface-distance-size-v1)
+Verdict: Holds, within its domain. Outcome: 64·64·0.
+Question: Does it still hold in a world twice as large?
+Result: Same split on 64 new starts. One size transfer, nothing more.
+Design: 64 new worlds at N = 64, seeds 183871 to 183934, three flips each.
+Numbers: 64/64, 64/64 and 0/64 endings change. Matched near-minus-far contrast 1.000 in all 64.
+Limit: One size transfer.
+Bears on: Persistence & response, Scale.
+
+### Two-bit loop (ORG-01-counterfactual-closure-v2)
+Verdict: Toy model only. Outcome: 8 cases.
+Question: In a tiny loop, does cutting an inner link stop what it maintains?
+Result: Yes, at step 9, and replacing the role keeps it. But we wrote the rule, so this is a check of the fixture.
+Design: Two-bit deterministic loop, eight conditions in two orientations, 64 transitions, cut between ticks 8 and 15.
+Numbers: Output lost at state 9 under the cut; kept under sham, inner substitution and outside replacement. 16 exact replays.
+Limit: The transition rule encodes the contrast. Not run on the Otto engine.
+Bears on: Organisation.
+
+### Renewal measure (G02-MEASUREMENT-V1)
+Verdict: Rejected. Outcome: 38/128.
+Question: Can a measure tell real self-renewal from look-alikes, whoever is looking?
+Result: All look-alikes were caught. But 38 of 128 paths changed verdict with the observer, so we rejected our own measure.
+Design: 327 paths: 128 candidate, 128 paired external mirrors, 64 noise, 7 deterministic. Eight admissible observers, locked before the run.
+Numbers: Positive reference passes 8 of 8 observers. 198 negative paths: no pass. 38 of 128 candidate paths change verdict across observers.
+Limit: Rejected as observer-sensitive. Says nothing on life, autonomy or organisation.
+Bears on: Organisation.
+
+### Cut & replace (G02-DEPENDENCE)
+Verdict: Not run. Outcome: blocked.
+Question: Which inner part really keeps the whole going, once every outside help is matched?
+Result: Not run. It stays blocked until a measurement survives.
+Design: Planned: cut inner roles against matched outside, resource and boundary controls.
+Numbers: Not run.
+Limit: Blocked until a measurement survives.
+Bears on: Organisation.
+
+## Objectives
+
+### Minimal world
+State: Measured, within a bounded domain.
+Local transitions on a finite state, visible and replayable.
+Test: Run the active law and a frozen copy from identical starts. Replay every event.
+What could fool us: Taking a replay for an independent replication; Complexity that the law itself supplied.
+On record: Characterised for one law, majority on a ring. Not closed.
+
+### Scale
+State: Not started, no evidence yet.
+How effects, costs and limits move with size, resources and time.
+Test: Sweep size and capacity separately, then together, against noise and periodic controls.
+What could fool us: Novelty from noise; A finite curve read as unlimited growth.
+On record: One size change tested, 32 to 64 cells. Nothing more.
+
+### Persistence & response
+State: Measured, within a bounded domain.
+A pattern lasts over a declared time and responds to a declared disturbance.
+Test: Flip one cell, compare with a sham and with a plain attractor.
+What could fool us: A crystal; A standing wave; An oscillator; A static attractor.
+On record: Response to single pokes is mapped at 32 and 64 cells. Not closed.
+
+### Boundary
+State: We are working here.
+A unit keeps its causal identity while its parts are replaced.
+Test: Move the proposed boundary and cut interactions of equal cost. See if predictions hold.
+What could fool us: A boundary drawn after seeing the result; Plain spatial grouping.
+On record: No evidence yet.
+
+### Resources
+State: We are working here.
+Limited flows change what can happen and what can be maintained.
+Test: Withdraw one flow against a sham, with the same starting stock.
+What could fool us: An energy counter that never moves; A budget that encodes the answer.
+On record: E0 only keeps a constant count. No flow measured yet.
+
+### Causal memory
+State: Not started, no evidence yet.
+A trace of the past changes a later response.
+Test: Two histories, same present. Erase or transplant the trace and nothing else.
+What could fool us: Autocorrelation; An unchanged environment; An attractor taken for learning.
+On record: No evidence yet.
+
+### Plasticity
+State: Not started, no evidence yet.
+Interaction changes a rule or a link, and the change lasts.
+Test: Lock the structure or let it move, then test in a reserved context.
+What could fool us: A law picked from outside; A new state under a fixed law.
+On record: No evidence yet.
+
+### Organisation
+State: We are working here.
+Activities help maintain the very conditions that make them possible.
+Test: First a measurement that rejects trivial look-alikes. Then cut, replace and compensate inner roles.
+What could fool us: A flame; Convection; A simple feedback loop; A criterion fitted to the model.
+On record: A toy model behaved as written. The first real measurement was rejected. This is where we work.
+
+### Heredity
+State: Not started, no evidence yet.
+A variation survives the replacement of the units that carry it.
+Test: Remove the transmitted channel, keep the same surroundings.
+What could fool us: The environment rebuilding the same thing; A copy made by the program.
+On record: No evidence yet.
+
+### Seeking information
+State: Not started, no evidence yet.
+An action changes what can be seen, and that changes a later decision.
+Test: Offer probes of equal cost and scramble which one is informative.
+What could fool us: Random exploration; Information coded as a reward.
+On record: No evidence yet.
+
+### Adaptation
+State: Not started, no evidence yet.
+The response to a context changes after interaction, with a bounded causal benefit.
+Test: Reverse a regularity. Compare trace transfer, erasure and plain selection.
+What could fool us: Passive sorting of survivors; A curriculum we supplied; A good fixed controller.
+On record: No evidence yet.
+
+### Evolution
+State: Not started, no evidence yet.
+Transmitted variants change in frequency because they spread differently.
+Test: Intact against scrambled inheritance, unequal against equalised spread.
+What could fool us: Drift; Sorting without heredity; A hidden evolutionary goal.
+On record: No evidence yet.
+
+### Communication
+State: Not started, no evidence yet.
+An emission changes what another system does next. Not words yet: a signal that matters.
+Test: Scramble the channel, keep shared inputs, replace the sender with a matched replay.
+What could fool us: Correlation through a shared input; A message written by an outside agent.
+On record: No evidence yet.
+
+### Accumulation
+State: Not started, no evidence yet.
+A lineage keeps and combines changes beyond what it would rediscover alone.
+Test: Chains with an intact or scrambled channel, against an isolated control with equal budget.
+What could fool us: More compute; The same discovery made twice; Random complexity.
+On record: No evidence yet.
+
+### New individuals
+State: Not started, no evidence yet.
+A group starts to transmit and depend on itself at its own level.
+Test: Scatter and rebuild groups from the same parts.
+What could fool us: Aggregation; Temporary cooperation; A boundary drawn by the observer.
+On record: No evidence yet.
+
+### Asking
+State: Not started, no evidence yet.
+A distinction between possibilities decides which experiment comes next.
+Test: Swap what two probes would reveal, then cut the answer. See if choices follow.
+What could fool us: A preprogrammed list of questions; A spoken request with no consequence.
+On record: No evidence yet.
+
+### Causal prediction
+State: Not started, no evidence yet.
+A retained structure predicts what an unseen intervention will do.
+Test: Reserve interventions and recombinations. Ablate the candidate relation.
+What could fool us: Interpolation; A lookup table; A model that lives in the observer.
+On record: No evidence yet.
+
+### Understanding
+State: Not started, no evidence yet.
+A relation keeps working after its surface, its place or its context has changed.
+Test: Change labels, topology and cause one by one. Compare intact and scrambled carriers.
+What could fool us: The same data in disguise; An interface that encodes the mapping.
+On record: No evidence yet.
+
+### Its own research
+State: Not started, no evidence yet.
+Otto proposes, intervenes, reads the result and revises, with nobody choosing for it.
+Test: A hidden reserved world. Falsify one relation and check that the next test changes.
+What could fool us: A fixed lab script; An outside agent thinking for Otto.
+On record: No evidence yet.
+
+### Self-change (optional)
+State: Not started, no evidence yet.
+A change Otto makes improves its ability to make further useful changes.
+Test: Freeze the mechanism after one cycle and compare on a reserved problem.
+What could fool us: An outside optimiser; A one-off gain; Overfitting the measure.
+On record: An optional branch. No evidence yet.
+
+### Otto speaks and understands by itself
+State: Not started, no evidence yet.
+Autonomous, cumulative intelligence: gains in inquiry and transfer, kept and reused across contexts.
+Test: Combine separate audits of revision, retention and transfer, each with its own ablations.
+What could fool us: A single good score; A supplied library of answers; Complexity with no function.
+On record: The goal. No current result reaches it.
+
+## The eleven questions
+
+0. Can a tiny world hold a shape? (Measured, in one kind of world)
+1. Does the shape survive a disturbance? (First tests done)
+2. Can it change before it breaks? (Not started)
+3. Can it pass on what it became? (Not started)
+4. Do flows create roles by themselves? (Not started)
+5. Can a new structure open new actions? (Not started)
+6. Can it discover a way to signal? (Not started)
+7. Can it ask for what it does not know? (Not started)
+8. Can it reuse an idea somewhere new? (Not started)
+9. Can a group become a new one? (Not started)
+10. Can it choose its own next question? (Not started)
+
+## Glossary
+
+- Artificial life: The study of life-like processes by building them, here in a computer.
+- Cell: One place in the world. It holds a single value, shown as green or blue.
+- Ring: The shape of the world: a circle of cells, so that every cell has two neighbours.
+- Majority law: The rule of the current world. At each step a cell takes the value most common among itself and its two neighbours. Also known as elementary rule 232.
+- Seed: The number that fixes the starting world. The same seed always gives the same world.
+- Density: The chance that a cell starts green.
+- Group: A run of neighbouring green cells. Called an occupied cluster in the record.
+- Fixed point: A world that the rule no longer changes.
+- Border: A cell whose two neighbours differ. Called an interface in the record.
+- Poke: Changing one cell by hand in a settled world. Called a single-site flip in the record.
+- Update order: Whether all cells change together (synchronous) or one after another in a random order (sequential).
+- Replay: Running the same code again from the same seed and comparing every byte. A replay is not an independent replication.
+- Preregistration: Writing down and locking what will be measured, and what would prove it wrong, before the run.
+- Observer: The part that measures. It reads the world and never changes it.
+- Look-alike: Something that could be mistaken for the real thing, such as a wave, a crystal or a pattern fed from outside.
+- Organisation: Activities that help maintain the very conditions that make them possible. Not shown in Otto yet.
+- Ablation: Removing one part to see what depended on it.
+- Confidence interval: The range of values compatible with the data. Proportions here use the Wilson 95% interval.

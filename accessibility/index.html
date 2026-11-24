@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>Accessibility | Otto</title>
+<meta name="description" content="Accessibility statement of the Otto website: what is in place, known limits, and how to ask for help or report a barrier.">
+<meta name="robots" content="noindex">
+<meta name="author" content="Hadrien Lonjaret">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://maliciousmusic.github.io/otto-site/accessibility/">
+<meta property="og:url" content="https://maliciousmusic.github.io/otto-site/accessibility/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Otto">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Accessibility | Otto">
+<meta property="og:description" content="Accessibility statement of the Otto website: what is in place, known limits, and how to ask for help or report a barrier.">
+<meta property="og:image" content="https://maliciousmusic.github.io/otto-site/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Otto, artificial life research. Can a mind grow from almost nothing?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ottoalife">
+<link rel="icon" href="../assets/otto.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="Plain text for AI assistants">
+<link rel="preload" href="../assets/fonts/otto-cells-vf.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/jost-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/style.css?v=2c44797d">
+<link rel="stylesheet" href="../css/otto-cells.css?v=ea64e6e4">
+<script src="../js/boot.js?v=b534cf9c"></script>
+<script type="module" src="../js/main.js?v=5b2d2b41"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Accessibility | Otto","description":"Accessibility statement of the Otto website: what is in place, known limits, and how to ask for help or report a barrier.","url":"https://maliciousmusic.github.io/otto-site/accessibility/","inLanguage":"en","dateModified":"2026-11-24","isPartOf":{"@type":"WebSite","name":"Otto","url":"https://maliciousmusic.github.io/otto-site/"},"about":{"@id":"https://maliciousmusic.github.io/otto-site/#otto"}},{"@type":"ResearchProject","@id":"https://maliciousmusic.github.io/otto-site/#otto","name":"Otto","alternateName":"Otto, artificial life research","description":"Otto is an artificial life research project. It looks for the smallest set of rules and constraints from which something could organise itself, then learn, communicate and understand, without any of those abilities being programmed in. Today it is a small, fully replayable computer world, a record of tests, and a map of what still has to be shown.","url":"https://maliciousmusic.github.io/otto-site/","logo":"https://maliciousmusic.github.io/otto-site/assets/icon-512.png","email":"ottoalife@gmail.com","foundingDate":"2026","founder":{"@type":"Person","name":"Hadrien Lonjaret","url":"https://lonjarethadrien.com/"},"sameAs":["https://www.instagram.com/ottoalife/","https://x.com/ottoalife","https://www.youtube.com/@Ottoalife","https://www.tiktok.com/@ottoalife","https://www.reddit.com/user/ottoalife/","https://discord.gg/fNjbFKkUeQ","https://www.pinterest.com/ottoalife/","https://www.facebook.com/profile.php?id=61596719647613"],"knowsAbout":["Artificial life","Emergence","Cellular automata","Self-organisation","Open-ended evolution","Preregistration","Reproducible research"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Otto","item":"https://maliciousmusic.github.io/otto-site/"},{"@type":"ListItem","position":2,"name":"Accessibility","item":"https://maliciousmusic.github.io/otto-site/accessibility/"}]}]}</script>
+</head>
+<body class="docpage">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <a class="brand" href="../"><img src="../assets/otto.svg" alt="" width="72" height="72"><span>otto</span></a>
+  <button type="button" class="menu" id="menu" aria-expanded="false" aria-controls="menubox">Menu</button>
+  <div class="menubox" id="menubox">
+    <nav aria-label="Main"><a href="../map/">Map</a><a href="../results/">Results</a><a href="../lab/">Lab</a><a href="../method/">Method</a><a href="../questions/">Questions</a></nav>
+    <details class="prefs" id="prefs"><summary>Display</summary><div class="prefbox">
+      <fieldset><legend>Detail</legend><label><input type="radio" name="detail" value="simple" checked> Simple</label><label><input type="radio" name="detail" value="full"> Full, with protocols</label></fieldset>
+      <fieldset><legend>Motion</legend><label><input type="radio" name="motion" value="on" checked> On</label><label><input type="radio" name="motion" value="off"> Paused</label></fieldset>
+      <fieldset><legend>Letters</legend><label><input type="radio" name="letters" value="faces" checked> With faces</label><label><input type="radio" name="letters" value="plain"> Plain</label></fieldset>
+    </div></details>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Otto</a></li><li aria-current="page">Accessibility</li></ol></nav>
+<section class="doc">
+  <h1 class="alive">Accessibility</h1>
+  <p class="note">Last updated: <time datetime="2026-11-24">24 November 2026</time>.</p>
+  <p>We want everyone to be able to read and play here. Our target is WCAG 2.2 level AA. We checked every page with an automated tool (axe) and tested keyboard use and narrow screens. Screen readers have not been tested yet. The site has not been audited by an independent body, so we do not claim conformance.</p>
+  <h2>What is in place</h2>
+  <ul>
+    <li>Everything works with a keyboard. In the ring, the map and the world picker, arrow keys move and Enter acts.</li>
+    <li>The map has a list view, and charts have a table or a written reading.</li>
+    <li>Colour is never alone: faces, shapes or words carry the same meaning.</li>
+    <li>Motion can be paused from the Display menu, and the site follows your system’s reduced-motion setting.</li>
+    <li>Letters with faces can be replaced by plain letters from the Display menu.</li>
+    <li>Pages can be read without JavaScript, except for the simulations.</li>
+    <li>Text stays readable at 400% zoom.</li>
+  </ul>
+  <h2>Known limits</h2>
+  <ul>
+    <li>The map as a drawing is dense on small screens. The list view holds the same content.</li>
+    <li>The space and time picture in the lab is an image. Its state is described in words below it and can be saved as a table.</li>
+    <li>The logo green and blue are light. Where they carry information we use darker versions, words or shapes.</li>
+    <li>The site is in English. Legal information is also in French.</li>
+  </ul>
+  <h2>Tell us</h2>
+  <p>If something blocks you, write to <a href="mailto:ottoalife@gmail.com">ottoalife@gmail.com</a> with the page and what happened. We will answer and offer the content in another form.</p>
+  <p>If you are in France and receive no satisfactory answer, you can contact the <a href="https://www.defenseurdesdroits.fr/">Défenseur des droits</a>.</p>
+</section>
+
+</main>
+<footer>
+  <img src="../assets/otto.svg" alt="" width="120" height="120">
+  <p class="big alive">Follow Otto as it grows</p>
+  <ul><li><a href="https://www.instagram.com/ottoalife/" rel="me noopener">Instagram</a></li><li><a href="https://x.com/ottoalife" rel="me noopener">X</a></li><li><a href="https://www.youtube.com/@Ottoalife" rel="me noopener">YouTube</a></li><li><a href="https://www.tiktok.com/@ottoalife" rel="me noopener">TikTok</a></li><li><a href="https://www.reddit.com/user/ottoalife/" rel="me noopener">Reddit</a></li><li><a href="https://discord.gg/fNjbFKkUeQ" rel="me noopener">Discord</a></li><li><a href="https://www.pinterest.com/ottoalife/" rel="me noopener">Pinterest</a></li><li><a href="https://www.facebook.com/profile.php?id=61596719647613" rel="me noopener">Facebook</a></li><li><a href="mailto:ottoalife@gmail.com">Write to us</a></li></ul>
+  <nav aria-label="Site"><ul class="minor"><li><a href="../map/">Map</a></li><li><a href="../results/">Results</a></li><li><a href="../lab/">Lab</a></li><li><a href="../method/">Method</a></li><li><a href="../questions/">Questions</a></li><li><a href="../record/">Record and data</a></li><li><a href="../font/">Typeface</a></li><li><a href="../legal/">Legal notice</a></li><li><a href="../privacy/">Privacy</a></li><li><a href="../terms/">Terms</a></li><li><a href="../accessibility/" aria-current="page">Accessibility</a></li></ul></nav>
+  <p class="fine">Research record as of 2 October 2026. A project by <a href="https://lonjarethadrien.com/">Hadrien Lonjaret</a>. No cookies, no trackers.</p>
+</footer>
+</body>
+</html>
