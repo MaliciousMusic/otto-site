@@ -4,8 +4,8 @@ import { el, cell } from './cell.js';
 import { objectives, links, tests, wayUp } from '../data/map.js';
 import { calm, onMotion, roving, smooth } from './prefs.js';
 
-const VERDICT = { holds: 'Holds, within its domain', toy: 'Toy model only', rejected: 'Rejected', waiting: 'Not run' };
-const STATE = { measured: 'Measured, within a bounded domain', now: 'We are working here', asleep: 'Not started, no evidence yet' };
+const VERDICT = { holds: 'Holds, within its domain', toy: 'Toy model only', rejected: 'Rejected', waiting: 'Upcoming, not run' };
+const STATE = { measured: 'Measured, within a bounded domain', now: 'We are working here', asleep: 'Upcoming: not started, no evidence yet' };
 const LINK = { solid: 'supported', maybe: 'plausible', unsure: 'contested or unknown', def: 'part of the definition', no: 'refuted' };
 const h = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
 const nm = (o) => o.name.join(' ');

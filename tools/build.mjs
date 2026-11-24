@@ -21,8 +21,8 @@ const cfg = JSON.parse(readFileSync(process.env.SITE_CONFIG ?? join(ROOT, 'site.
 const SITE = (process.env.SITE_URL ?? cfg.url).replace(/\/$/, '');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const human = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const VERDICT = { holds: 'Holds, within its domain', toy: 'Toy model only', rejected: 'Rejected', waiting: 'Not run' };
-const STATE = { measured: 'Measured, within a bounded domain', now: 'We are working here', asleep: 'Not started, no evidence yet' };
+const VERDICT = { holds: 'Holds, within its domain', toy: 'Toy model only', rejected: 'Rejected', waiting: 'Upcoming, not run' };
+const STATE = { measured: 'Measured, within a bounded domain', now: 'We are working here', asleep: 'Upcoming: not started, no evidence yet' };
 const LINK = { solid: 'supported', maybe: 'plausible', unsure: 'contested or unknown', def: 'part of the definition', no: 'refuted' };
 const nm = (o) => o.name.join(' ');
 const obj = Object.fromEntries(objectives.map((o) => [o.id, o]));
@@ -37,7 +37,7 @@ if (release && missing.length) {
   process.exit(1);
 }
 const open2web = SITE && !preview && !missing.length;
-const todo = (fr) => `<mark class="todo">${fr ? 'À compléter avant la mise en ligne' : 'To be completed before launch'}</mark>`;
+const todo = (fr) => `<mark class="todo">${fr ? 'À venir' : 'Upcoming'}</mark>`;
 
 // the output folder is emptied first, so it must be inside this project
 if (!DIST.startsWith(ROOT + sep) || ['src', 'tools', 'tests', '.git', '.claude'].includes(DIST.slice(ROOT.length + 1).split(sep)[0])) {
@@ -118,7 +118,7 @@ const fragments = (root) => ({
 
 // ---- structured data
 const abs = (p) => (SITE ? `${SITE}/${p}` : undefined);
-const PERSON = { '@type': 'Person', name: cfg.person.name, url: cfg.person.url || undefined };
+const PERSON = { '@type': 'Person', name: cfg.person.name, url: cfg.person.upcoming ? undefined : cfg.person.url || undefined };
 const ORG = {
   '@type': 'ResearchProject', '@id': abs('#otto') ?? '#otto', name: 'Otto', alternateName: 'Otto, artificial life research', description: faq[0][2], url: abs(''), logo: abs('assets/icon-512.png'), email: cfg.email,
   foundingDate: '2026', founder: PERSON, sameAs: Object.values(cfg.social), knowsAbout: ['Artificial life', 'Emergence', 'Cellular automata', 'Self-organisation', 'Open-ended evolution', 'Preregistration', 'Reproducible research'],
@@ -212,7 +212,7 @@ ${p.next ? `<nav class="nextpage" aria-label="Next page"><a class="btn" href="${
   <p class="big alive">Follow Otto as it grows</p>
   <ul>${Object.entries(cfg.social).map(([n, u]) => `<li><a href="${u}" rel="me noopener">${n}</a></li>`).join('')}<li><a href="mailto:${cfg.email}">Write to us</a></li></ul>
   <nav aria-label="Site"><ul class="minor">${[...NAV, ...MINOR].map((n) => `<li>${navLink(p, root, n)}</li>`).join('')}</ul></nav>
-  <p class="fine">Research record as of ${human(cfg.recordDate)}. A project by ${cfg.person.url ? `<a href="${cfg.person.url}">${esc(cfg.person.name)}</a>` : esc(cfg.person.name)}. No cookies, no trackers.</p>
+  <p class="fine">Research record as of ${human(cfg.recordDate)}. A project by ${cfg.person.url && !cfg.person.upcoming ? `<a href="${cfg.person.url}">${esc(cfg.person.name)}</a>` : esc(cfg.person.name)}${cfg.person.upcoming ? ` (${new URL(cfg.person.url).hostname}, upcoming)` : ''}. No cookies, no trackers.</p>
 </footer>
 </body>
 </html>

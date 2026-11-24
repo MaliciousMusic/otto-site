@@ -10,5 +10,5 @@ export const protocols = {
   T8: { design: '64 new worlds at N = 64, seeds 183871 to 183934, three flips each.', numbers: '64/64, 64/64 and 0/64 endings change. Matched near-minus-far contrast 1.000 in all 64.', limit: 'One size transfer.' },
   T9: { design: 'Two-bit deterministic loop, eight conditions in two orientations, 64 transitions, cut between ticks 8 and 15.', numbers: 'Output lost at state 9 under the cut; kept under sham, inner substitution and outside replacement. 16 exact replays.', limit: 'The transition rule encodes the contrast. Not run on the Otto engine.' },
   T10: { design: '327 paths: 128 candidate, 128 paired external mirrors, 64 noise, 7 deterministic. Eight admissible observers, locked before the run.', numbers: 'Positive reference passes 8 of 8 observers. 198 negative paths: no pass. 38 of 128 candidate paths change verdict across observers.', limit: 'Rejected as observer-sensitive. Says nothing on life, autonomy or organisation.' },
-  T11: { design: 'Planned: cut inner roles against matched outside, resource and boundary controls.', numbers: 'Not run.', limit: 'Blocked until a measurement survives.' },
+  T11: { design: 'Planned: cut inner roles against matched outside, resource and boundary controls.', numbers: 'Upcoming, not run.', limit: 'Blocked until a measurement survives.' },
 };

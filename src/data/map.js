@@ -144,7 +144,7 @@ export const tests = [
     result: 'All look-alikes were caught. But 38 of 128 paths changed verdict with the observer, so we rejected our own measure.' },
   { id: 'T11', to: ['ORG'], name: ['Cut &', 'replace'], code: 'G02-DEPENDENCE', verdict: 'waiting', value: 'blocked', go: null,
     q: 'Which inner part really keeps the whole going, once every outside help is matched?',
-    result: 'Not run. It stays blocked until a measurement survives.' },
+    result: 'Upcoming, not run. It stays blocked until a measurement survives.' },
 ];
 
 export const wayUp = [
@@ -161,13 +161,13 @@ export const wayUp = [
 export const climb = [
   { t: 'Can a tiny world hold a shape?', k: 'Substrate', s: 'Measured, in one kind of world', d: 'Nothing, trivial patterns, half-stable shapes or recurring ones: every outcome is useful.' },
   { t: 'Does the shape survive a disturbance?', k: 'Perturbation', s: 'First tests done', d: 'So far, single pokes only. We measure recovery and give no reward for it.' },
-  { t: 'Can it change before it breaks?', k: 'Plasticity', s: 'Not started', d: 'Compare no change, random change and local change under a strict budget.' },
-  { t: 'Can it pass on what it became?', k: 'Heredity', s: 'Not started', d: 'An adaptation handed down without copying the whole acquired state.' },
-  { t: 'Do flows create roles by themselves?', k: 'Economy', s: 'Not started', d: 'Hubs, specialists, parasites: do they appear from flows alone?' },
-  { t: 'Can a new structure open new actions?', k: 'Innovation', s: 'Not started', d: 'An innovation counts when it enlarges what can be done afterwards.' },
-  { t: 'Can it discover a way to signal?', k: 'Communication', s: 'Not started', d: 'A signal counts when the other one’s future differs from its future without the signal. No vocabulary is preloaded.' },
-  { t: 'Can it ask for what it does not know?', k: 'Questioning', s: 'Not started', d: 'A question counts when the action it picks can tell two possibilities apart.' },
-  { t: 'Can it reuse an idea somewhere new?', k: 'Understanding', s: 'Not started', d: 'It predicts, intervenes, generalises and survives a change of surface. Memorising is not enough.' },
-  { t: 'Can a group become a new one?', k: 'Recursion', s: 'Not started', d: 'An organisation that turns into a unit of the next organisation.' },
-  { t: 'Can it choose its own next question?', k: 'Self-research', s: 'Not started', d: 'From here Otto would take part in its own research. Only then does scale matter.' },
+  { t: 'Can it change before it breaks?', k: 'Plasticity', s: 'Upcoming, not started', d: 'Compare no change, random change and local change under a strict budget.' },
+  { t: 'Can it pass on what it became?', k: 'Heredity', s: 'Upcoming, not started', d: 'An adaptation handed down without copying the whole acquired state.' },
+  { t: 'Do flows create roles by themselves?', k: 'Economy', s: 'Upcoming, not started', d: 'Hubs, specialists, parasites: do they appear from flows alone?' },
+  { t: 'Can a new structure open new actions?', k: 'Innovation', s: 'Upcoming, not started', d: 'An innovation counts when it enlarges what can be done afterwards.' },
+  { t: 'Can it discover a way to signal?', k: 'Communication', s: 'Upcoming, not started', d: 'A signal counts when the other one’s future differs from its future without the signal. No vocabulary is preloaded.' },
+  { t: 'Can it ask for what it does not know?', k: 'Questioning', s: 'Upcoming, not started', d: 'A question counts when the action it picks can tell two possibilities apart.' },
+  { t: 'Can it reuse an idea somewhere new?', k: 'Understanding', s: 'Upcoming, not started', d: 'It predicts, intervenes, generalises and survives a change of surface. Memorising is not enough.' },
+  { t: 'Can a group become a new one?', k: 'Recursion', s: 'Upcoming, not started', d: 'An organisation that turns into a unit of the next organisation.' },
+  { t: 'Can it choose its own next question?', k: 'Self-research', s: 'Upcoming, not started', d: 'From here Otto would take part in its own research. Only then does scale matter.' },
 ];

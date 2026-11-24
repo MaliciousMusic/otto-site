@@ -168,7 +168,7 @@ function observer() {
 
 function glance() {
   const rows = [...document.querySelectorAll('#gl-table tbody tr')], n = (v) => rows.filter((r) => r.dataset.v === v).length;
-  toggle($('gl-filter'), [['all', `All ${rows.length}`], ['holds', `Holds ${n('holds')}`], ['toy', `Toy ${n('toy')}`], ['rejected', `Rejected ${n('rejected')}`], ['waiting', `Not run ${n('waiting')}`]],
+  toggle($('gl-filter'), [['all', `All ${rows.length}`], ['holds', `Holds ${n('holds')}`], ['toy', `Toy ${n('toy')}`], ['rejected', `Rejected ${n('rejected')}`], ['waiting', `Upcoming ${n('waiting')}`]],
     (v) => rows.forEach((r) => { r.hidden = v !== 'all' && r.dataset.v !== v; }))('all');
 }
 

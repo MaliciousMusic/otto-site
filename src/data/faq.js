@@ -12,7 +12,7 @@ export const faq = [
   ['alive', 'Is Otto alive or conscious?', 'Nothing in the record supports that, and the project does not claim it.'],
   ['next', 'What happens next?', 'Deciding what it means for a system to maintain a condition over time, in a way that does not depend on when the observer looks. No new run starts before that is settled.'],
   ['who', 'Who is behind Otto?', 'Otto is solo research by Hadrien Lonjaret, started in 2026.'],
-  ['code', 'Is the code open?', 'The research code is private for now and no licence has been chosen. The recorded results shown on this site can be downloaded as JSON and CSV from the record page.'],
+  ['code', 'Is the code open?', 'The research code is private for now. Choosing a licence is upcoming; none applies today. The recorded results shown on this site can be downloaded as JSON and CSV from the record page.'],
   ['cute', 'Why does serious research look this cute?', 'So that people stay long enough to see how careful it is. The faces carry meaning too: a smile means measured, a round mouth means a question in progress, closed eyes mean not started.'],
 ];
 export const glossary = [

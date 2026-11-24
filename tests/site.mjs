@@ -43,6 +43,18 @@ for (const [f, h] of Object.entries(html)) {
 }
 for (const f of ['robots.txt', 'llms.txt', 'llms-full.txt', 'site.webmanifest', '.well-known/security.txt', 'assets/og.png', 'assets/apple-touch-icon.png', 'assets/icon-192.png', 'assets/icon-512.png', 'data/otto-results.json', 'data/tests.csv']) if (!existsSync(join(DIST, f))) bad(join(DIST, f), 'missing');
 JSON.parse(readFileSync(join(DIST, 'data/otto-results.json'), 'utf8'));
+// What is not ready or not shown says so, in both languages, and never looks finished.
+const page = (p) => html[join(DIST, p, 'index.html')];
+const gaps = Object.values(JSON.parse(readFileSync('site.config.json', 'utf8')).legal).filter((v) => !v).length;
+assert.equal((page('legal').match(/class="todo">Upcoming</g) ?? []).length, gaps);
+assert.equal((page('legal').match(/class="todo">À venir</g) ?? []).length, gaps);
+for (const h of Object.values(html)) assert.doesNotMatch(h, /before launch|À compléter|lorem|coming soon/i);
+assert.match(page('record'), /Upcoming: not started, no evidence yet/);
+assert.match(page('record'), /Upcoming, not run/);
+assert.match(page('record'), /Licence: upcoming/);
+assert.match(page('accessibility'), /Screen reader tests are upcoming/);
+const { person } = JSON.parse(readFileSync('site.config.json', 'utf8'));
+for (const h of Object.values(html)) assert.equal(h.includes(`href="${person.url}"`), !person.upcoming);
 assert.deepEqual(problems, []);
 
 // The release build refuses to run while the URL or a legal fact is missing.

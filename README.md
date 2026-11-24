@@ -15,7 +15,7 @@ npm run check-live # quelques lectures du site public
 
 ## Avant la mise en ligne
 
-Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`. Remettre `person.url` (https://lonjarethadrien.com/) quand ce site répond. Puis `npm run release` et publier `dist/`.
+Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`. Retirer `person.upcoming` quand lonjarethadrien.com répond : le lien revient. Puis `npm run release` et publier `dist/`.
 Tant qu'une mention manque, toutes les pages restent en noindex, même avec une URL. L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`.
 GitHub Pages n'envoie aucun en-tête réglable : la CSP et la politique de référent sont dans des balises meta. `.well-known/security.txt` est sous le chemin du projet ; renouveler `securityExpires` chaque année (le test échoue 30 jours avant).
 
@@ -27,6 +27,8 @@ GitHub Pages n'envoie aucun en-tête réglable : la CSP et la politique de réf�
 - `src/js/` : un module par partie, chargé seulement sur les pages concernées. `prefs.js` : menu Display (détail, mouvement, lettres).
 - `tools/build.mjs` : gabarit, métadonnées, JSON-LD, sitemap, `llms.txt`, `llms-full.txt`, CSV.
 - Vert `#7BC943` et bleu `#5EC3EE` du logo ; `--green-d` et `--blue-d` là où la couleur porte une information (contraste).
+
+« Upcoming / À venir » : prévu, pas prêt ou pas démontré ; jamais une promesse. Un fait légal absent s'affiche ainsi et garde tout le site en noindex.
 
 Règles du site : une cellule verte exige un résultat enregistré, chaque résultat garde sa limite à côté, rien n'est affirmé au-delà du registre.
 
