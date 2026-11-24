@@ -1,6 +1,7 @@
 // node tests/site.mjs — checks the built pages in dist/ (run the build first).
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync, writeFileSync, mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { join, dirname, relative } from 'node:path';
 
@@ -46,12 +47,20 @@ assert.deepEqual(problems, []);
 
 // The release build refuses to run while the URL or a legal fact is missing.
 const cfg = JSON.parse(readFileSync('site.config.json', 'utf8'));
+const full = join(mkdtempSync(join(tmpdir(), 'otto-')), 'config.json');
+writeFileSync(full, JSON.stringify({ ...cfg, legal: Object.fromEntries(Object.entries(cfg.legal).map(([k, v]) => [k, v || 'test'])) }));
 const ready = cfg.url && Object.values(cfg.legal).every(Boolean);
 const before = spawnSync('node', ['tools/build.mjs', '--release', '--quiet'], { encoding: 'utf8' });
 assert.equal(before.status, ready ? 0 : 1);
 
+// A URL is not enough: with a legal fact missing, pages stay out of search engines and there is no sitemap.
+writeFileSync(`${full}.gap`, JSON.stringify({ ...cfg, legal: { ...cfg.legal, siret: '' } }));
+assert.equal(spawnSync('node', ['tools/build.mjs', '--quiet'], { env: { ...process.env, SITE_URL: 'https://example.test/otto', SITE_CONFIG: `${full}.gap` } }).status, 0);
+assert.ok(!existsSync(join(DIST, 'sitemap.xml')));
+for (const f of pages) assert.match(readFileSync(f, 'utf8'), /<meta name="robots" content="noindex">/, f);
+
 // With a URL, every public page has a canonical address and is in the sitemap.
-const withUrl = spawnSync('node', ['tools/build.mjs', '--quiet'], { env: { ...process.env, SITE_URL: 'https://example.test/otto' } });
+const withUrl = spawnSync('node', ['tools/build.mjs', '--quiet'], { env: { ...process.env, SITE_URL: 'https://example.test/otto', SITE_CONFIG: full } });
 assert.equal(withUrl.status, 0);
 const map = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 for (const f of pages.filter((x) => !x.includes('404'))) {

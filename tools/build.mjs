@@ -17,7 +17,7 @@ import { seeded, step } from '../src/js/world.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..'), SRC = join(ROOT, 'src'), DIST = join(ROOT, process.argv.find((a) => a.startsWith('--out='))?.slice(6) || 'dist');
 const release = process.argv.includes('--release'), quiet = process.argv.includes('--quiet'), preview = process.argv.includes('--preview');
-const cfg = JSON.parse(readFileSync(join(ROOT, 'site.config.json'), 'utf8'));
+const cfg = JSON.parse(readFileSync(process.env.SITE_CONFIG ?? join(ROOT, 'site.config.json'), 'utf8'));
 const SITE = (process.env.SITE_URL ?? cfg.url).replace(/\/$/, '');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const human = (d) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -29,13 +29,14 @@ const obj = Object.fromEntries(objectives.map((o) => [o.id, o]));
 const count = (s) => objectives.filter((o) => o.state === s).length;
 
 // ---- what is still missing before launch
-const missing = [];
+const missing = []; // any gap keeps every page out of search engines
 if (!SITE) missing.push('url');
 for (const [k, v] of Object.entries(cfg.legal)) if (!v) missing.push(`legal.${k}`);
 if (release && missing.length) {
   console.error(`Not ready to publish. Fill in site.config.json: ${missing.join(', ')}`);
   process.exit(1);
 }
+const open2web = SITE && !preview && !missing.length;
 const todo = (fr) => `<mark class="todo">${fr ? 'À compléter avant la mise en ligne' : 'To be completed before launch'}</mark>`;
 
 // the output folder is emptied first, so it must be inside this project
@@ -112,12 +113,12 @@ const fragments = (root) => ({
   commit: R.source.commit.slice(0, 12), recordDate: cfg.recordDate, recordDateText: human(cfg.recordDate), updated: cfg.updated, updatedText: human(cfg.updated),
   email: cfg.email, person: cfg.person.name,
   cite: `${cfg.person.name}. Otto, artificial life research: public record. State of ${human(cfg.recordDate)}.${SITE ? ` ${SITE}/record/` : ''}`,
-  ...Object.fromEntries(Object.entries(cfg.legal).flatMap(([k, v]) => [[`legal.${k}`, v ? esc(v) : todo()], [`legal.${k}.fr`, v ? esc(v) : todo(true)]])),
+  ...Object.fromEntries(Object.entries(cfg.legal).flatMap(([k, v]) => [[`legal.${k}`, v ? esc(v) : todo()], [`legal.${k}.fr`, v ? esc(cfg.legalFr?.[k] ?? v) : todo(true)]])),
 });
 
 // ---- structured data
 const abs = (p) => (SITE ? `${SITE}/${p}` : undefined);
-const PERSON = { '@type': 'Person', name: cfg.person.name, url: cfg.person.url };
+const PERSON = { '@type': 'Person', name: cfg.person.name, url: cfg.person.url || undefined };
 const ORG = {
   '@type': 'ResearchProject', '@id': abs('#otto') ?? '#otto', name: 'Otto', alternateName: 'Otto, artificial life research', description: faq[0][2], url: abs(''), logo: abs('assets/icon-512.png'), email: cfg.email,
   foundingDate: '2026', founder: PERSON, sameAs: Object.values(cfg.social), knowsAbout: ['Artificial life', 'Emergence', 'Cellular automata', 'Self-organisation', 'Open-ended evolution', 'Preregistration', 'Reproducible research'],
@@ -155,7 +156,7 @@ const head = (p, root) => `<meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="${CSP}">
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.description)}">
-<meta name="robots" content="${!SITE || preview || p.noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1'}">
+<meta name="robots" content="${!open2web || p.noindex ? 'noindex' : 'index, follow, max-image-preview:large, max-snippet:-1'}">
 <meta name="author" content="${esc(cfg.person.name)}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#ffffff">${SITE && !p.noindex ? `
@@ -211,7 +212,7 @@ ${p.next ? `<nav class="nextpage" aria-label="Next page"><a class="btn" href="${
   <p class="big alive">Follow Otto as it grows</p>
   <ul>${Object.entries(cfg.social).map(([n, u]) => `<li><a href="${u}" rel="me noopener">${n}</a></li>`).join('')}<li><a href="mailto:${cfg.email}">Write to us</a></li></ul>
   <nav aria-label="Site"><ul class="minor">${[...NAV, ...MINOR].map((n) => `<li>${navLink(p, root, n)}</li>`).join('')}</ul></nav>
-  <p class="fine">Research record as of ${human(cfg.recordDate)}. A project by <a href="${cfg.person.url}">${esc(cfg.person.name)}</a>. No cookies, no trackers.</p>
+  <p class="fine">Research record as of ${human(cfg.recordDate)}. A project by ${cfg.person.url ? `<a href="${cfg.person.url}">${esc(cfg.person.name)}</a>` : esc(cfg.person.name)}. No cookies, no trackers.</p>
 </footer>
 </body>
 </html>
@@ -236,8 +237,8 @@ for (const file of readdirSync(join(SRC, 'pages')).filter((f) => f.endsWith('.ht
 const open = pages.filter((p) => !p.noindex).sort((a, b) => a.path.localeCompare(b.path));
 
 // ---- crawlers and assistants
-writeFileSync(join(DIST, 'robots.txt'), SITE ? `User-agent: *\nAllow: /\n${preview ? '' : `\nSitemap: ${abs('sitemap.xml')}\n`}` : 'User-agent: *\nDisallow: /\n');
-if (SITE && !preview) writeFileSync(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${open.map((p) => `  <url><loc>${abs(p.path)}</loc><lastmod>${cfg.updated}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+writeFileSync(join(DIST, 'robots.txt'), SITE ? `User-agent: *\nAllow: /\n${open2web ? `\nSitemap: ${abs('sitemap.xml')}\n` : ''}` : 'User-agent: *\nDisallow: /\n');
+if (open2web) writeFileSync(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${open.map((p) => `  <url><loc>${abs(p.path)}</loc><lastmod>${cfg.updated}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 const at = (p) => abs(p) ?? `/${p}`;
 writeFileSync(join(DIST, 'llms.txt'), `# Otto
 

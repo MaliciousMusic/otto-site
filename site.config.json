@@ -7,7 +7,7 @@
   "updated": "2026-11-25",
   "securityExpires": "2027-11-01",
   "email": "ottoalife@gmail.com",
-  "person": { "name": "Hadrien Lonjaret", "url": "https://lonjarethadrien.com/" },
+  "person": { "name": "Hadrien Lonjaret", "url": "" },
   "social": {
     "Instagram": "https://www.instagram.com/ottoalife/",
     "X": "https://x.com/ottoalife",
@@ -25,6 +25,10 @@
     "director": "Hadrien Lonjaret",
     "host": "GitHub, Inc. (GitHub Pages)",
     "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States",
-    "hostPhone": ""
+    "hostPhone": "None published by GitHub. Contact: support.github.com/contact"
+  },
+  "legalFr": {
+    "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
+    "hostPhone": "Non publié par GitHub. Contact : support.github.com/contact"
   }
 }
