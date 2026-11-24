@@ -1,0 +1,36 @@
+<!--{"path":"map/","title":"Map of objectives, tests and results | Otto","short":"Map","description":"Interactive map of Otto’s research: 21 objectives from a minimal world to understanding, the 11 tests done or planned, and what each one showed.","schema":"map","next":["results/","The results"]}-->
+<section class="phead">
+  <h1 class="alive">The map of objectives, tests and results</h1>
+  <p class="lead">Roots at the bottom, the goal at the top. A smile means measured, a round mouth means we are asking now, closed eyes mean not started.</p>
+</section>
+<section class="atlas" aria-label="Map">
+  <div class="bar">
+    <div class="seg" role="group" aria-label="View">
+      <button type="button" data-view="graph" aria-pressed="true">Graph</button>
+      <button type="button" data-view="list" aria-pressed="false">List</button>
+    </div>
+    <div class="seg" role="group" aria-label="Show" id="map-filters">
+      <button type="button" data-filter="all" aria-pressed="true">Everything</button>
+      <button type="button" data-filter="objectives" aria-pressed="false">Objectives</button>
+      <button type="button" data-filter="tests" aria-pressed="false">Tests</button>
+      <button type="button" data-filter="results" aria-pressed="false">Results</button>
+    </div>
+    <form class="find" id="map-find" role="search"><label for="map-q">Find</label><input id="map-q" type="search" list="map-names" autocomplete="off" placeholder="memory, poke, heredity…"><datalist id="map-names"></datalist></form>
+    <button type="button" class="btn small" id="map-tour" aria-pressed="false">Show the way up</button>
+  </div>
+  <p class="vis-hidden" id="map-help">Inside the graph, use the arrow keys to move between cells and Enter to open one. The list view has the same content.</p>
+  <div class="mapgrid" id="map-graph">
+    <div class="mapbox"><div id="map" aria-describedby="map-help"></div></div>
+    <aside id="map-panel" class="panel" aria-live="polite" aria-label="Details"><h2 class="ph">Pick anything</h2><p>Each cell is an objective. Dishes are tests. Drops are results. Pull a cell and let go: it knows its place.</p></aside>
+  </div>
+  <p id="map-tip" class="maptip" aria-live="polite" hidden></p>
+  <ul class="legend" id="map-legend">
+    <li><svg viewBox="0 0 40 10" aria-hidden="true"><path class="edge solid" d="M2 5H38"/></svg>supported by a test</li>
+    <li><svg viewBox="0 0 40 10" aria-hidden="true"><path class="edge maybe" d="M2 5H38"/></svg>plausible</li>
+    <li><svg viewBox="0 0 40 10" aria-hidden="true"><path class="edge unsure" d="M2 5H38"/></svg>contested or unknown</li>
+    <li><svg viewBox="0 0 40 10" aria-hidden="true"><path class="edge def" d="M2 5H38"/></svg>part of the definition</li>
+    <li><svg viewBox="0 0 40 10" aria-hidden="true"><path class="edge no" d="M2 5H38"/><path class="edge-x" d="M16 1L24 9M24 1L16 9"/></svg>refuted: lasting is not thinking</li>
+  </ul>
+  <p class="full">Arrows are candidate dependencies. “Part of the definition” says what a word means, and never that the ability exists. One dependency out of 38 is supported by a test; one is refuted.</p>
+  <div id="map-list" class="maplist" hidden>{{mapList}}</div>
+</section>

@@ -1,0 +1,15 @@
+<!--{"path":"record/","title":"Research record and data | Otto","short":"Record","description":"The full public record of Otto’s tests and objectives, with protocols, numbers, limits and downloadable data in JSON and CSV.","schema":"record"}-->
+<section class="phead">
+  <h1 class="alive">The record</h1>
+  <p class="lead">Every test and every objective, with its protocol, its numbers and its limit. State of <time datetime="{{recordDate}}">{{recordDateText}}</time>.</p>
+  <form class="find" id="rec-find" role="search"><label for="rec-q">Filter</label><input id="rec-q" type="search" autocomplete="off" placeholder="seed, heredity, rejected…"><span id="rec-n" class="note" aria-live="polite"></span></form>
+  <p class="toc"><a href="#tests">Tests</a> <a href="#objectives">Objectives</a> <a href="#data">Data</a> <a href="#cite">Cite</a></p>
+</section>
+<section id="tests" class="rec" aria-labelledby="t-h"><h2 id="t-h" class="alive">Tests</h2>{{recordTests}}</section>
+<section id="objectives" class="rec" aria-labelledby="o-h"><h2 id="o-h" class="alive">Objectives</h2>{{recordObjectives}}</section>
+<section id="data" aria-labelledby="d-h"><h2 id="d-h" class="alive">Data</h2>
+  <p>Reshaped from the recorded artefacts of research commit <code>{{commit}}</code>, with nothing recomputed.</p>
+  <ul class="files">{{files}}</ul>
+  <p class="note">No open licence has been chosen yet. You may read, check and quote these files with attribution. For anything else, <a href="mailto:{{email}}">write to us</a>.</p></section>
+<section id="cite" aria-labelledby="c-h"><h2 id="c-h" class="alive">Cite</h2>
+  <p id="cite-text" class="cite">{{cite}}</p><button type="button" class="chip" id="cite-copy">Copy the citation</button></section>

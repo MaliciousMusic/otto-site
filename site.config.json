@@ -1,0 +1,29 @@
+{
+  "url": "",
+  "name": "Otto",
+  "tagline": "Artificial life research",
+  "language": "en",
+  "recordDate": "2026-10-02",
+  "updated": "2026-11-24",
+  "email": "ottoalife@gmail.com",
+  "person": { "name": "Hadrien Lonjaret", "url": "https://lonjarethadrien.com/" },
+  "social": {
+    "Instagram": "https://www.instagram.com/ottoalife/",
+    "X": "https://x.com/ottoalife",
+    "YouTube": "https://www.youtube.com/@Ottoalife",
+    "TikTok": "https://www.tiktok.com/@ottoalife",
+    "Reddit": "https://www.reddit.com/user/ottoalife/",
+    "Discord": "https://discord.gg/fNjbFKkUeQ",
+    "Pinterest": "https://www.pinterest.com/ottoalife/",
+    "Facebook": "https://www.facebook.com/profile.php?id=61596719647613"
+  },
+  "legal": {
+    "editor": "Hadrien Lonjaret EI",
+    "siret": "",
+    "address": "",
+    "director": "Hadrien Lonjaret",
+    "host": "",
+    "hostAddress": "",
+    "hostPhone": ""
+  }
+}

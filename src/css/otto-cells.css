@@ -1,0 +1,19 @@
+/* Otto Cells: real text, with faces inside the letters. Built by tools/font/build.py */
+@font-face { font-family: 'Otto Cells'; src: url(../assets/fonts/otto-cells-vf.woff2) format('woff2'); font-weight: 400 700; font-display: swap; }
+@property --face { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --blka { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --blkb { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --blkc { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --gazx { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --gazy { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --mood { syntax: '<number>'; inherits: true; initial-value: 0; }
+/* Faces are off by default; .alive opens them. Keep it for text above 30px or so. */
+.alive {
+  --face: 1; font-family: 'Otto Cells', 'Arial Rounded MT Bold', ui-rounded, sans-serif; font-weight: 700;
+  font-variation-settings: 'FACE' var(--face), 'BLKA' var(--blka), 'BLKB' var(--blkb), 'BLKC' var(--blkc), 'GAZX' var(--gazx), 'GAZY' var(--gazy), 'MOOD' var(--mood);
+  font-feature-settings: 'calt', 'liga'; letter-spacing: 0; transition: --gazx .25s, --gazy .25s, --mood .3s, --face .4s;
+}
+@media (hover: hover) { .alive:hover { --mood: 1; } }
+html[data-motion=off] .alive { transition: none; } html[data-motion=off] .alive:hover { --mood: 0; }
+html[data-letters=plain] .alive { --face: 0; }
+@media (forced-colors: active) { .alive { --face: 0; } }

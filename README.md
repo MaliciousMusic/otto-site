@@ -1,25 +1,38 @@
 # Otto — site
 
-Site de présentation d'Otto (ex-Powii), recherche en vie artificielle. Statique, sans dépendance, en anglais.
+Site d'Otto (ex-Powii), recherche en vie artificielle. Statique, sans dépendance, en anglais (mentions légales et confidentialité aussi en français).
 
 ```bash
-npm start   # http://localhost:4173
-npm test    # rejoue 769 exécutions enregistrées dans le moteur de la page
+npm start         # http://localhost:4173, reconstruit à chaque modification
+npm test          # 769 exécutions rejouées + contrôle de toutes les pages
+npm run build     # version brouillon dans dist/ (noindex tant qu'il n'y a pas d'URL)
+npm run preview   # version en ligne provisoire (GitHub Pages, branche gh-pages), noindex
+npm run release   # version à publier ; refuse s'il manque l'URL ou une mention légale
 ```
+
+## Avant la mise en ligne
+
+Remplir `site.config.json` : `url`, `legal.siret`, `legal.address`, `legal.host`, `legal.hostAddress`, `legal.hostPhone`. Puis `npm run release` et publier `dist/`.
+L'URL active canonical, sitemap, robots ouverts, données structurées absolues et liens de `llms.txt`. `_headers` contient les en-têtes de sécurité (format Cloudflare Pages / Netlify).
 
 ## Où changer quoi
 
-- `data/map.js` : objectifs, liens, tests, escalier des onze questions, visite « Show the way up ».
-- `data/results.js` : données mesurées, générées. Ne pas modifier à la main :
-  `python3 tools/build_data.py /chemin/vers/Powii`
-- `js/world.js` : portage du monde E0 (anneau, loi de majorité, SplitMix64), contrôlé par `tests/replay.mjs`.
-- `js/hero.js` anneau vivant · `js/play.js` boîte, escalier, boucle · `js/map.js` carte · `js/results.js` expositions.
-- `css/style.css` : vert `#7BC943` et bleu `#5EC3EE` du logo, fond blanc.
+- `src/pages/*.html` : une page par fichier, l'en-tête JSON donne titre, description et chemin.
+- `src/data/` : `map.js` (objectifs, liens, tests, escalier), `protocols.js` (fiches techniques), `faq.js` (questions, glossaire), `box.js`, `lookalikes.js`.
+- `src/data/results.js` : données mesurées, générées par `python3 tools/build_data.py /chemin/vers/Powii`. Ne pas modifier à la main.
+- `src/js/` : un module par partie, chargé seulement sur les pages concernées. `prefs.js` : menu Display (détail, mouvement, lettres).
+- `tools/build.mjs` : gabarit, métadonnées, JSON-LD, sitemap, `llms.txt`, `llms-full.txt`, CSV.
+- Vert `#7BC943` et bleu `#5EC3EE` du logo ; `--green-d` et `--blue-d` là où la couleur porte une information (contraste).
+
+Règles du site : une cellule verte exige un résultat enregistré, chaque résultat garde sa limite à côté, rien n'est affirmé au-delà du registre.
 
 ## Sources
 
-Dépôt privé Powii, branche `research/g02-semantic-identifiability-v1` (G02-MEASUREMENT-V1 n'est pas dans `main`), état au 2 octobre 2026 : `research/problem_graph/`, `docs/results/`, `docs/specifications/POWII_V5.md`.
+Dépôt privé Powii, branche `research/g02-semantic-identifiability-v1` (G02-MEASUREMENT-V1 n'est pas dans `main`), état au 2 octobre 2026.
 
-Règle du site : une cellule verte exige un résultat enregistré, et chaque résultat garde sa limite à côté.
+## Police Otto Cells
 
-Polices : Bagel Fat One et Jost (OFL, licences dans `assets/fonts/`).
+Dessinée en code : `python3 tools/font/build.py` (fontTools + brotli) écrit `src/assets/fonts/otto-cells-vf.woff2`.
+Axes : `wght` 400-700, `FACE` (0 par défaut, 1 = visages), `BLKA/B/C` (paupières), `GAZX/GAZY` (regard), `MOOD` (humeur). Classe `.alive` sur le site.
+
+Texte courant : Jost (OFL, licence dans `src/assets/fonts/`).

@@ -1,0 +1,44 @@
+<!--{"path":"results/","title":"Results: what Otto’s experiments have shown so far","short":"Results","description":"Five interactive exhibits from Otto’s recorded experiments: majority rules, update order, perturbation healing, a two-bit loop, and a measure of self-renewal that was rejected.","schema":"results","next":["lab/","The lab"]}-->
+<section class="phead">
+  <h1 class="alive">What we have measured so far</h1>
+  <p class="lead">Small worlds, exact answers. Every exhibit uses the recorded data, and every result keeps its limit next to it.</p>
+</section>
+<section class="glance" aria-labelledby="gl-h">
+  <h2 id="gl-h" class="small-h">At a glance</h2>
+  <div class="seg" id="gl-filter" role="group" aria-label="Filter by verdict"></div>
+  <div class="tablewrap" tabindex="0" role="region" aria-label="Table of tests"><table id="gl-table"><caption class="vis-hidden">Tests, outcomes and verdicts</caption><thead><tr><th scope="col">Test</th><th scope="col">Question</th><th scope="col">Outcome</th><th scope="col">Verdict</th></tr></thead><tbody>{{glanceRows}}</tbody></table></div>
+  <p><a href="{{root}}record/">Full record and data downloads</a></p>
+</section>
+<section class="results">
+  <article id="r-law"><div class="txt"><p class="badge holds">Holds, within its domain</p><h2 class="exh">The rule really does something</h2>
+    <p>64 worlds, each run twice from the same start: once frozen, once alive. With the rule on, scattered cells gather into fewer groups.</p>
+    <p class="limit"><strong>Limit.</strong> It does not show self-organisation in general. Majority rules are well known, and this is our calibration.</p>{{tech:T2,T3}}</div>
+    <div class="fig"><div class="controls"><div class="seg" id="law-on" role="group" aria-label="Law"></div><div class="seg" id="law-p" role="group" aria-label="Starting density"></div></div>
+    <div id="law-chart"></div><p class="axlab">Number of groups in the world. One dot is one world.</p><p class="read" id="law-read" aria-live="polite"></p>
+    <details id="law-table"><summary>See the numbers</summary></details></div></article>
+
+  <article id="r-orders"><div class="txt"><p class="badge holds">Holds, within its domain</p><h2 class="exh">Order alone can change the ending</h2>
+    <p>Take one start and update its cells one by one, in four different random orders. 56 of 64 worlds end in more than one place. Pick a world to see its four endings.</p>
+    <p class="limit"><strong>Limit.</strong> Four orders only give a lower bound. Nothing here adapts.</p>{{tech:T4,T5}}</div>
+    <div class="fig"><div id="orders-chart" class="ochart" role="group" aria-label="64 worlds by number of endings. Use the arrow keys."></div><div id="orders-view" class="oview" aria-live="polite"></div></div></article>
+
+  <article id="r-poke"><div class="txt"><p class="badge holds">Holds, within its domain</p><h2 class="exh">Poke it deep and it heals</h2>
+    <p>Flip one cell of a settled world. Near a border between groups, the world moves for good. Two cells away or more, it repairs itself exactly, at both sizes we tried.</p>
+    <p class="limit"><strong>Limit.</strong> A direct consequence of this rule. It is not resilience of something alive.</p>{{tech:T6,T7,T8}}</div>
+    <div class="fig"><div class="controls"><div class="seg" id="poke-n" role="group" aria-label="World size"></div></div><div id="poke-chart" class="pchart"></div>
+    <p class="axlab">Smiles healed. Round mouths moved for good.</p>
+    <details id="poke-table"><summary>See the numbers</summary></details></div></article>
+
+  <article id="r-loop"><div class="txt"><p class="badge toy">Toy model only</p><h2 class="exh">Cut a loop and it stops</h2>
+    <p>Two bits that keep each other on. Cut one link between states 8 and 16 and the activity is lost at state 9. Give the role to a stand-in and it survives.</p>
+    <p class="limit"><strong>Limit.</strong> We wrote the rule, so the contrast was built in. A check of our tools, and no evidence of organisation.</p>{{tech:T9}}</div>
+    <div class="fig"><div id="loop-chart" class="tchart"></div><p class="axlab">65 states, left to right. Striped background: the cut.</p></div></article>
+
+  <article id="r-observer"><div class="txt"><p class="badge rejected">Rejected</p><h2 class="exh">The day we rejected our own measure</h2>
+    <p>We built a measure of self-renewal and locked its rules before running it. It caught all 198 look-alike paths. Then 38 of 128 candidate paths changed verdict depending on when and how we looked.</p>
+    <p>A fact about Otto should not depend on our glasses. So we dropped it, and the next test stays blocked.</p>{{tech:T10}}</div>
+    <div class="fig"><div class="controls"><div class="seg" id="observer-eye" role="group" aria-label="Observer"></div></div><div id="observer-chart" class="obchart"></div>
+    <p class="read" id="observer-read" aria-live="polite"></p>
+    <p class="axlab">Dark ring: this path changed its verdict. Smile: counted as self-renewing.</p>
+    <details id="observer-table"><summary>See the numbers</summary></details></div></article>
+</section>

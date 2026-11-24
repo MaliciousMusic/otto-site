@@ -1,3 +1,5 @@
+import { calm } from './prefs.js';
+
 // One cell, drawn with the proportions of the logo (ring r 18, stroke 3.6).
 const NS = 'http://www.w3.org/2000/svg';
 export const el = (tag, attrs = {}, kids = []) => {
@@ -28,9 +30,9 @@ export function cell(mood) {
 
 // Eyes inside `root` look toward the pointer.
 export function watch(root, max = 1.5) {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   let queued = false, px = 0, py = 0;
   addEventListener('pointermove', (e) => {
+    if (calm()) return;
     px = e.clientX; py = e.clientY;
     if (queued) return;
     queued = true;

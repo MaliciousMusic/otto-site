@@ -1,7 +1,7 @@
 // node tests/replay.mjs — the in-page world must land exactly where the recorded Rust runs landed.
 import assert from 'node:assert/strict';
-import R from '../data/results.js';
-import { SplitMix64, seeded, settle, stepInOrder, clusters, borderDistance } from '../js/world.js';
+import R from '../src/data/results.js';
+import { SplitMix64, seeded, settle, stepInOrder, clusters, borderDistance } from '../src/js/world.js';
 
 let n = 0;
 for (const p of ['0.25', '0.5'])

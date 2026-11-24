@@ -1,0 +1,12 @@
+.show { text-align: center; padding-top: 24px; }
+#try { font-size: clamp(3rem, 10.5vw, 9.4rem); line-height: 1.08; outline: none; padding: .12em; border-radius: 40px; overflow-wrap: anywhere; }
+#try:focus { background: var(--celadon); }
+.show .lead { margin: 12px auto 0; }
+.knobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px 28px; max-width: 1000px; margin: 36px auto 0; text-align: left; }
+.knobs label { display: grid; gap: 4px; font-weight: 500; font-size: 1rem; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 36px; }
+.glyphs { font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.25; max-width: none; overflow-wrap: anywhere; margin-top: 28px; }
+.glyphs.small { font: 700 clamp(1.5rem, 3vw, 2.5rem)/1.5 'Otto Cells'; }
+.sizes { font: 400 1.5rem/1.6 'Otto Cells'; margin-top: 32px; }
+@media (max-width: 800px) { .cols { grid-template-columns: 1fr; gap: 24px; } }
+.w5 { font-weight: 550; } .w7 { font-weight: 700; }

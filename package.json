@@ -1,1 +1,12 @@
-{"name":"otto-site","private":true,"type":"module","scripts":{"start":"python3 -m http.server 4173","test":"node tests/replay.mjs"}}
+{
+  "name": "otto-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "build": "node tools/build.mjs",
+    "preview": "SITE_URL=https://maliciousmusic.github.io/otto-site node tools/build.mjs --preview",
+    "release": "node tools/build.mjs --release",
+    "test": "node tests/replay.mjs && node tools/build.mjs --quiet && node tests/site.mjs"
+  }
+}

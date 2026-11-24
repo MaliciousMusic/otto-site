@@ -1,0 +1,67 @@
+<!--{"path":"","title":"Otto, artificial life research: can a mind grow from almost nothing?","short":"Home","description":"Otto is an artificial life research project. It looks for the smallest rules from which organisation, communication and understanding could emerge, one measured and replayable step at a time.","schema":"home"}-->
+<section class="hero">
+  <div class="pitch">
+    <h1 class="alive">Can a mind grow from almost nothing?</h1>
+    <p>Otto is an artificial life research project. We look for the roots of emergence: the smallest rules and structures from which something starts to hold together.</p>
+    <p>Then we climb, one measured step at a time, all the way up to an Otto that speaks and understands by itself.</p>
+    <p class="go"><a class="btn" href="{{root}}map/">Open the map</a><a class="btn ghost" href="{{root}}results/">See the results</a></p>
+  </div>
+  <div class="world">
+    <svg id="ring" viewBox="0 0 640 640" role="group" aria-label="A ring of 32 living cells. Use the arrow keys to move between cells and Enter to poke one."></svg>
+    <div class="core">
+      <p class="wid" id="ring-world"></p>
+      <p class="say" id="ring-say" aria-live="polite">A ring of 32 cells. Each one copies the majority around it.</p>
+      <div id="ring-guess" class="guess" role="group" aria-label="Guess before you poke" hidden><button type="button" data-guess="heal" aria-pressed="false">It will heal</button><button type="button" data-guess="move" aria-pressed="false">It will move</button></div>
+      <div id="ring-tally" class="tally" hidden></div>
+      <button type="button" class="btn small" id="ring-new">New world</button>
+    </div>
+    <p class="truth">The real experiment, running in your browser. Our test suite checks that it lands exactly where {{replays}} recorded runs landed.</p>
+  </div>
+</section>
+
+<section class="now" aria-labelledby="now-h">
+  <h2 id="now-h" class="alive">Where Otto is today</h2>
+  <div class="progress" role="img" aria-label="{{nMeasured}} of {{nObjectives}} objectives measured, {{nNow}} being worked on, {{nAsleep}} not started">{{progressCells}}</div>
+  <dl class="facts">
+    <div><dt>Measured</dt><dd><strong>{{nMeasured}} of {{nObjectives}} objectives</strong>, each in a small domain.</dd></div>
+    <div><dt>Working on</dt><dd><strong>Organisation</strong>: when does something maintain itself?</dd></div>
+    <div><dt>Not yet</dt><dd><strong>Otto does not speak, learn or remember.</strong> Nothing here claims it does.</dd></div>
+  </dl>
+</section>
+
+<section id="why" class="why">
+  <div class="txt">
+    <h2 class="alive">We don’t program the mind. We look for what lets one start.</h2>
+    <p>Otto begins with very little. No words, no goals, no score to please, no language model inside. Only a few physical ingredients, and rules simple enough to check by hand.</p>
+    <p>Whatever shows up after that has to be explained: what caused it, what breaks it, and whether it was hiding in our own rules all along.</p>
+    <p>The answer may be yes, no, or only with something more. All three count as results.</p>
+    <p class="full">In the programme’s terms: a state Z evolves under a kernel K with explicit laws. No primitive may depend on performance, intelligence or task success, and no measurement may drive the system.</p>
+  </div>
+  <div id="box" class="box">
+    <p class="hint" id="box-h">Feed Otto.</p>
+    <div class="chips in" role="group" aria-label="Ingredients Otto gets">{{boxIn}}</div>
+    <div class="mid"><div id="box-otto" aria-hidden="true"></div><p id="box-say" class="bubble" aria-live="polite">What do I get?</p></div>
+    <div class="chips out" role="group" aria-label="Things that stay out">{{boxOut}}</div>
+  </div>
+</section>
+
+<section id="climb" class="climb">
+  <h2 class="alive">Eleven questions, from a rule to a voice</h2>
+  <p class="lead">This is our working order. Some steps may merge, or turn out to be unnecessary. Help Otto up the stairs.</p>
+  <div class="stairwrap"><div id="stairs" class="stairs" role="group" aria-label="Eleven questions">{{stairs}}</div></div>
+  <div id="climb-panel" class="cpanel" aria-live="polite">{{climbFirst}}</div>
+</section>
+
+<section class="doors" aria-labelledby="doors-h">
+  <h2 id="doors-h" class="alive">Explore</h2>
+  <a class="door wide" href="{{root}}map/"><span class="pic">{{miniMap}}</span><span><strong>The map</strong> 21 objectives, 11 tests and their results, from the roots to the goal. Pull a cell, follow a path.</span></a>
+  <a class="door" href="{{root}}results/"><span class="pic">{{miniResults}}</span><span><strong>The results</strong> Five exhibits you can play with, drawn from recorded data.</span></a>
+  <a class="door" href="{{root}}lab/"><span class="pic">{{miniLab}}</span><span><strong>The lab</strong> Set the law, the seed and the order. Watch time unfold and check the fingerprint.</span></a>
+  <a class="door" href="{{root}}method/"><span class="pic">{{miniMethod}}</span><span><strong>The method</strong> Nine patterns, one that renews itself. Can you spot it?</span></a>
+</section>
+
+<section class="short-faq" aria-labelledby="faq-h">
+  <h2 id="faq-h" class="alive">Short answers</h2>
+  {{faqShort}}
+  <p><a href="{{root}}questions/">All questions and the glossary</a></p>
+</section>

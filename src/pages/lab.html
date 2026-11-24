@@ -1,0 +1,41 @@
+<!--{"path":"lab/","title":"The lab: run Otto’s world in your browser","short":"Lab","description":"Run Otto’s ring world yourself. Choose the law, seed, density and update order, watch time unfold, poke cells, compare fingerprints and export the run.","schema":"lab","next":["method/","The method"]}-->
+<section class="phead">
+  <h1 class="alive">The lab</h1>
+  <p class="lead">One ring of cells, one rule, and time running downwards. Same settings, same world, every time.</p>
+</section>
+<section class="lab" aria-label="Laboratory">
+  <form id="lab-form" class="labform" aria-label="Settings">
+    <fieldset><legend>Start from</legend><div class="chips" id="lab-presets"></div></fieldset>
+    <div class="fields">
+      <label>Seed <span class="two-in"><input id="lab-seed" type="number" min="0" max="4294967295" step="1" value="183742" inputmode="numeric"><button type="button" class="chip" id="lab-dice">Random</button></span></label>
+      <label>Cells <select id="lab-n"><option>32</option><option>64</option><option>128</option></select></label>
+      <label>Green at the start <output id="lab-p-out" for="lab-p">25%</output><input id="lab-p" type="range" min="5" max="95" step="5" value="25"></label>
+      <label>Update <select id="lab-order"><option value="sync">all at once</option><option value="seq">one by one, random order</option></select></label>
+    </div>
+    <fieldset><legend>The law: what a cell becomes, for each trio it can see</legend>
+      <div class="law" id="lab-law"></div>
+      <p id="lab-law-say" class="note" aria-live="polite"></p></fieldset>
+  </form>
+  <div class="labview">
+    <div class="labbar" role="group" aria-label="Time">
+      <button type="button" class="btn small" id="lab-play">Play</button>
+      <button type="button" class="chip" id="lab-step">One step</button>
+      <button type="button" class="chip" id="lab-end">To the end</button>
+      <button type="button" class="chip" id="lab-back">Back to start</button>
+      <label class="scrub">Time <output id="lab-t-out" for="lab-t">0</output><input id="lab-t" type="range" min="0" max="64" value="0"></label>
+    </div>
+    <canvas id="lab-canvas" tabindex="0" role="img" aria-label="Space and time diagram" aria-describedby="lab-say"></canvas>
+    <p id="lab-say" class="read" aria-live="polite"></p>
+    <div class="labtools">
+      <label class="inl">Poke cell <input id="lab-cell" type="number" min="1" max="32" value="1"></label><button type="button" class="chip" id="lab-poke">Poke now</button>
+      <button type="button" class="chip" id="lab-replay">Replay and compare</button>
+      <button type="button" class="chip" id="lab-link">Copy link</button>
+      <button type="button" class="chip" id="lab-csv">Save CSV</button>
+      <button type="button" class="chip" id="lab-png">Save image</button>
+    </div>
+    <p id="lab-hash" class="hash" aria-live="polite"></p>
+    <div class="labgraph"><svg id="lab-groups" role="img" aria-label="Number of groups over time"></svg></div>
+  </div>
+  <p class="note wide"><strong>What is recorded and what is play.</strong> With the majority law, 32 cells and 25% or 50% green, you are inside the conditions of the recorded studies. Anything else is exploration: fun, replayable, and not part of our results.</p>
+  <noscript><p class="note">The lab needs JavaScript. The recorded results are on the <a href="{{root}}results/">results page</a>.</p></noscript>
+</section>

@@ -2,10 +2,12 @@
 import R from '../data/results.js';
 import { el, face } from './cell.js';
 import { SplitMix64, seeded, settle, stepInOrder } from './world.js';
+import { roving } from './prefs.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; };
-const tip = h('div', 'tip'); tip.hidden = true; document.body.append(tip);
+const tip = h('div', 'tip'); tip.hidden = true; tip.setAttribute('aria-hidden', 'true'); document.body.append(tip);
+addEventListener('keydown', (e) => { if (e.key === 'Escape') tip.hidden = true; });
 const hover = (n, strong, rest) => {
   const on = (x, y) => {
     tip.replaceChildren(h('strong', '', strong()), h('span', '', rest())); tip.hidden = false;
@@ -92,23 +94,24 @@ function orders() {
     row.append(h('span', 'olabel', `${n} ${n === 1 ? 'ending' : 'endings'}`));
     const cells = h('div', 'ocells');
     for (const [seed] of set) {
-      const b = h('button', n > 1 ? 'g' : 'b'); b.type = 'button'; b.setAttribute('aria-label', `World ${seed}, ${n} endings`);
+      const b = h('button', n > 1 ? 'g' : 'b'); b.type = 'button'; b.setAttribute('aria-label', `World ${seed}, ${n} ${n === 1 ? 'ending' : 'endings'}`);
       b.addEventListener('click', () => show(seed, b)); hover(b, () => `${n} ${n === 1 ? 'ending' : 'endings'}`, () => `World ${seed}`);
       cells.append(b); if (n === 4) first ??= [seed, b];
     }
     row.append(cells, h('strong', '', set.length)); root.append(row);
   }
+  roving([...root.querySelectorAll('.ocells button')]);
   show(...first);
 }
 
-const bead = (v) => { const s = el('svg', { viewBox: '-21 -21 42 42', class: `bead ${v ? 'g' : 'b'}` }); s.append(el('circle', { r: 18, class: 'skin' }), face(v ? 'smile' : 'oh')); return s; };
+const bead = (v) => { const s = el('svg', { viewBox: '-21 -21 42 42', 'aria-hidden': 'true', class: `bead ${v ? 'g' : 'b'}` }); s.append(el('circle', { r: 18, class: 'skin' }), face(v ? 'smile' : 'oh')); return s; };
 
 function poke() {
   const root = $('poke-chart');
   const draw = (n) => {
     root.replaceChildren(...Object.entries(R.distance[n]).map(([cls, rows]) => {
       const far = cls.startsWith('2'), moved = rows.filter((r) => r[1]).length, d = h('div', 'pcol');
-      d.append(h('h4', '', far ? '2 or more away' : cls === '0' ? 'On a border' : '1 away'));
+      d.append(h('h3', 'ch', far ? '2 or more away' : cls === '0' ? 'On a border' : '1 away'));
       const grid = h('div', 'beadgrid');
       rows.forEach(([seed, m]) => { const b = bead(!m); hover(b, () => (m ? 'Moved for good' : 'Healed'), () => `World ${seed}`); grid.append(b); });
       d.append(grid, h('p', '', far ? `${rows.length - moved} of ${rows.length} healed` : `${moved} of ${rows.length} moved`));
@@ -141,7 +144,7 @@ const EYES = [['0', 'Look from 10 to 20'], ['1', 'Look from 8 to 18'], ['2', 'Lo
 function observer() {
   const root = $('observer-chart'), read = $('observer-read');
   const groups = ['4', '92'].map((n) => {
-    const d = h('div', 'ocol'), title = h('h4', '', `Starting from ${n}`), grid = h('div', 'beadgrid wide'), note = h('p');
+    const d = h('div', 'ocol'), title = h('h3', 'ch', `Starting from ${n}`), grid = h('div', 'beadgrid wide'), note = h('p');
     const beads = R.observer[n].map((p, i) => { const b = bead(p[0]); hover(b, () => (p[eye] ? 'Counted as self-renewing' : 'Not counted'), () => (new Set(p).size > 1 ? `Path ${i}: changes with the observer` : `Path ${i}: same verdict for everyone`)); grid.append(b); return b; });
     d.append(title, grid, note); root.append(d);
     return { n, beads, note };
@@ -163,7 +166,14 @@ function observer() {
   table('observer-table', ['Observer', 'Counted, start 4', 'Counted, start 92', 'Changed verdict'], EYES.map(([k, l]) => [l, R.observer['4'].filter((p) => p[k]).length, R.observer['92'].filter((p) => p[k]).length, ['4', '92'].reduce((a, n) => a + R.observer[n].filter((p) => p[k] !== p[0]).length, 0)]));
 }
 
+function glance() {
+  const rows = [...document.querySelectorAll('#gl-table tbody tr')], n = (v) => rows.filter((r) => r.dataset.v === v).length;
+  toggle($('gl-filter'), [['all', `All ${rows.length}`], ['holds', `Holds ${n('holds')}`], ['toy', `Toy ${n('toy')}`], ['rejected', `Rejected ${n('rejected')}`], ['waiting', `Not run ${n('waiting')}`]],
+    (v) => rows.forEach((r) => { r.hidden = v !== 'all' && r.dataset.v !== v; }))('all');
+}
+
 export function results() {
+  glance();
   const turnOn = law(); orders(); poke(); org(); observer();
   const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); setTimeout(turnOn, 900); } }, { threshold: .6 });
   io.observe($('law-chart'));
