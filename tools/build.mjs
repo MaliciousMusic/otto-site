@@ -283,7 +283,7 @@ ${glossary.map(([t, d]) => `- ${t}: ${d}`).join('\n')}
 writeFileSync(join(DIST, 'site.webmanifest'), JSON.stringify({ name: 'Otto, artificial life research', short_name: 'Otto', start_url: './', display: 'browser', background_color: '#ffffff', theme_color: '#ffffff', icons: [192, 512].map((n) => ({ src: `assets/icon-${n}.png`, sizes: `${n}x${n}`, type: 'image/png' })) }));
 // A project site on GitHub Pages cannot own the root of its origin, so the file lives under the project path; SECURITY.md and the legal page point to it.
 mkdirSync(join(DIST, '.well-known'), { recursive: true });
-writeFileSync(join(DIST, '.well-known/security.txt'), `Contact: mailto:${cfg.email}\nExpires: ${cfg.securityExpires}T00:00:00.000Z\nPreferred-Languages: en, fr\n${SITE ? `Canonical: ${abs('.well-known/security.txt')}\n` : ''}`);
+writeFileSync(join(DIST, '.well-known/security.txt'), `Contact: mailto:${cfg.email}\nContact: https://github.com/MaliciousMusic/otto-site/security/advisories/new\nExpires: ${cfg.securityExpires}T00:00:00.000Z\nPreferred-Languages: en, fr\n${SITE ? `Canonical: ${abs('.well-known/security.txt')}\n` : ''}`);
 
 writeFileSync(join(DIST, '.nojekyll'), '');
 

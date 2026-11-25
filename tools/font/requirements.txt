@@ -1,2 +1,3 @@
-fonttools==4.46.0
-brotli==1.1.0
+# Local font build only, nothing here is published. Brotli below 1.2.1 and fontTools below 4.60.2 have known flaws.
+fonttools==4.60.2
+brotli==1.2.1

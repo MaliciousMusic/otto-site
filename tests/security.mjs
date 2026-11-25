@@ -67,9 +67,16 @@ for (const f of readdirSync('.github/workflows')) {
 }
 assert.doesNotMatch(read('tools/deploy.mjs'), /--force|'-f',\s*'origin|\+\$\{commit/);
 
+// Font tools: exact versions, none with a known flaw (the local build only reads our own code).
+const pins = Object.fromEntries(read('tools/font/requirements.txt').split('\n').filter((l) => /^\w/.test(l)).map((l) => l.split('==')));
+const atLeast = (v, min) => v && v.localeCompare(min, 'en', { numeric: true }) >= 0;
+assert.ok(atLeast(pins.brotli, '1.2.1') && atLeast(pins.fonttools, '4.60.2'), JSON.stringify(pins));
+assert.match(read('tools/check-live.mjs'), /'accept-encoding': 'identity'/);
+
 // security.txt: a contact, and an expiry between one month and one year away.
 const st = read('dist/.well-known/security.txt'), days = (Date.parse(st.match(/^Expires: (.+)$/m)?.[1]) - Date.now()) / 864e5;
 assert.ok(st.includes(`Contact: mailto:${cfg.email}\n`));
+assert.ok(st.includes('Contact: https://github.com/MaliciousMusic/otto-site/security/advisories/new\n') && read('SECURITY.md').includes('https://github.com/MaliciousMusic/otto-site/security/advisories/new'));
 assert.ok(days > 30 && days < 366, `security.txt expires in ${Math.round(days)} days: renew securityExpires in site.config.json`);
 // The font trial shows its focus.
 assert.match(read('dist/css/font.css'), /#try:focus-visible \{ outline: 3px/);

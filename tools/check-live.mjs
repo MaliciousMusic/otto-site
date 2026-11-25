@@ -2,7 +2,7 @@
 import { connect } from 'node:tls';
 const SITE = (process.argv[2] ?? 'https://maliciousmusic.github.io/otto-site').replace(/\/$/, ''), secure = SITE.startsWith('https:');
 const problems = [];
-const get = async (path, opt) => { for (let i = 0; ; i++) try { return await fetch(path.startsWith('http') ? path : SITE + path, { signal: AbortSignal.timeout(20000), ...opt }); } catch (e) { if (i === 2) throw e; } };
+const get = async (path, opt) => { for (let i = 0; ; i++) try { return await fetch(path.startsWith('http') ? path : SITE + path, { signal: AbortSignal.timeout(20000), headers: { 'accept-encoding': 'identity' }, ...opt }); } catch (e) { if (i === 2) throw e; } };
 const check = async (what, run) => { try { const bad = await run(); if (bad) problems.push(`${what}: ${bad}`); } catch (e) { problems.push(`${what}: ${e.message}`); } };
 
 for (const p of ['/', '/map/', '/results/', '/lab/', '/method/', '/questions/', '/record/', '/font/', '/legal/', '/privacy/', '/terms/', '/accessibility/'])
