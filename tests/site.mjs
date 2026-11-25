@@ -53,6 +53,7 @@ assert.match(page('record'), /Upcoming: not started, no evidence yet/);
 assert.match(page('record'), /Upcoming, not run/);
 assert.match(page('record'), /Licence: upcoming/);
 assert.match(page('accessibility'), /Screen reader tests are upcoming/);
+for (const t of ['at most three years after the last message', 'au plus tard trois ans après le dernier message']) assert.ok(page('privacy').includes(t), t);
 // Publisher identity: complete, valid number, in both languages.
 const legal = JSON.parse(readFileSync('site.config.json', 'utf8')).legal;
 if (legal.siret) {
@@ -60,6 +61,9 @@ if (legal.siret) {
   assert.match(n, /^\d{14}$/); assert.equal(sum % 10, 0, 'SIRET check digit');
   assert.equal(page('legal').split(legal.siret).length - 1, 2);
   assert.equal(page('legal').split(legal.address).length - 1, 2);
+  assert.equal(page('legal').split(legal.register).length - 1, 2);
+  assert.ok(n.startsWith(legal.register.replace(/ /g, '').slice(0, 9)), 'register and SIRET agree');
+  for (const t of ['article 293 B of the French', 'TVA non applicable, article 293 B du CGI']) assert.equal(page('legal').split(t).length - 1, 1, t);
 }
 const { person } = JSON.parse(readFileSync('site.config.json', 'utf8'));
 for (const h of Object.values(html)) assert.equal(h.includes(`href="${person.url}"`), !person.upcoming);

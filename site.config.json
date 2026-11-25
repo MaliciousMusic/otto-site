@@ -21,6 +21,8 @@
   "legal": {
     "editor": "Hadrien Lonjaret EI",
     "siret": "853 801 488 00026",
+    "register": "853 801 488 RCS Clermont-Ferrand",
+    "vat": "VAT not applicable, article 293 B of the French General Tax Code (CGI)",
     "address": "35 cours Sablon, 63000 Clermont-Ferrand, France",
     "phone": "+33 7 43 72 90 32",
     "director": "Hadrien Lonjaret",
@@ -29,6 +31,7 @@
     "hostPhone": "None published by GitHub. Contact: support.github.com/contact"
   },
   "legalFr": {
+    "vat": "TVA non applicable, article 293 B du CGI",
     "phone": "07 43 72 90 32",
     "hostAddress": "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
     "hostPhone": "Non publié par GitHub. Contact : support.github.com/contact"
