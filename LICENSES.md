@@ -8,6 +8,7 @@
 | Recorded results | `src/data/results.js`, `data/*.csv`, `data/*.json` | Hadrien Lonjaret, reading and quoting allowed (see Terms) | `tools/build_data.py`, commit named on the record page |
 | Logo and icons | `src/assets/otto.svg`, `apple-touch-icon.png`, `icon-*.png` | to be confirmed by the author | exported with Inkscape, source and date to be filed |
 | Share image | `src/assets/og.png` | to be confirmed by the author | source and date to be filed |
-| npm packages, third-party scripts, photos, videos, sounds | none | | |
+| Film narration | `src/assets/film/fr/*.mp3` | text: Hadrien Lonjaret, all rights reserved; voice synthesised with Piper (MIT) and the `fr_FR-siwis-medium` voice, trained on the SIWIS French Speech Synthesis Database (CC BY 4.0, University of Edinburgh), credited on the film page | `tools/film_voice.mjs`, the file name carries a hash of its text |
+| npm packages, third-party scripts, photos, videos | none | | |
 
-Build tools, not published: fontTools (MIT), Brotli (MIT).
+Build tools, not published: fontTools (MIT), Brotli (MIT), Piper 2023.11.14-2 (MIT).
