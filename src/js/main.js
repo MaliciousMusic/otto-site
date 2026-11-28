@@ -5,7 +5,7 @@ import { faces } from './faces.js';
 const PARTS = [
   ['#ring', './hero.js', 'hero'], ['#box', './play.js', 'box'], ['#stairs', './play.js', 'climb'], ['#loop', './play.js', 'loop'],
   ['#map', './map.js', 'map'], ['#law-chart', './results.js', 'results'], ['#lab-canvas', './lab.js', 'lab'], ['#spot', './spot.js', 'spot'],
-  ['.find', './find.js', 'find'], ['#try', './font.js', 'font'],
+  ['.find', './find.js', 'find'], ['#try', './font.js', 'font'], ['#film', './film.js', 'film'],
 ];
 prefs();
 faces();

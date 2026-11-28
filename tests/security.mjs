@@ -46,9 +46,9 @@ for (const f of files.filter((x) => x.endsWith('.html'))) {
   assert.doesNotMatch(h, /stripe\.com|paypal|checkout|gumroad|patreon|ko-fi\.com|buymeacoffee/i, f);
 }
 for (const f of files) {
-  const ext = /\.(html|js|css|csv|json|txt|xml|svg|png|woff2|webmanifest)$|\.nojekyll$/;
+  const ext = /\.(html|js|css|csv|json|txt|xml|svg|png|woff2|mp3|webmanifest)$|\.nojekyll$/;
   assert.match(f, ext, `unexpected file ${f}`);
-  if (/\.(png|woff2)$/.test(f)) continue;
+  if (/\.(png|woff2|mp3)$/.test(f)) continue;
   assert.doesNotMatch(read(f), /sourceMappingURL|\/home\/|\/Users\/|BEGIN [A-Z ]*PRIVATE KEY|\b(?:sk|rk)_(?:live|test)_|whsec_|AIza[\w-]{30}|gh[pousr]_\w{30}|xox[bp]-|service_role/, f);
 }
 // Without scripts the map is still readable.

@@ -47,7 +47,7 @@ if (!DIST.startsWith(ROOT + sep) || ['src', 'tools', 'tests', '.git', '.claude']
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(join(DIST, 'data'), { recursive: true });
 for (const d of ['assets', 'css', 'js']) cpSync(join(SRC, d), join(DIST, d), { recursive: true });
-for (const f of ['map.js', 'results.js', 'box.js', 'lookalikes.js']) cpSync(join(SRC, 'data', f), join(DIST, 'data', f));
+for (const f of ['map.js', 'results.js', 'box.js', 'lookalikes.js', 'film.js', 'film-audio.js']) cpSync(join(SRC, 'data', f), join(DIST, 'data', f));
 const ver = (f) => createHash('sha256').update(readFileSync(join(SRC, f))).digest('hex').slice(0, 8);
 
 // ---- data downloads
@@ -146,8 +146,8 @@ const schema = (p) => {
 // ---- layout
 // GitHub Pages cannot send headers: this policy travels in a meta tag, where frame-ancestors, sandbox and report-uri do not work.
 // Everything is closed except what the pages load. Trusted types forbid any HTML or script sink.
-const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'";
-const NAV = [['map/', 'Map'], ['results/', 'Results'], ['lab/', 'Lab'], ['method/', 'Method'], ['questions/', 'Questions']];
+const CSP = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'";
+const NAV = [['film/', 'Film'], ['map/', 'Map'], ['results/', 'Results'], ['lab/', 'Lab'], ['method/', 'Method'], ['questions/', 'Questions']];
 const MINOR = [['record/', 'Record and data'], ['font/', 'Typeface'], ['legal/', 'Legal notice'], ['privacy/', 'Privacy'], ['terms/', 'Terms'], ['accessibility/', 'Accessibility']];
 const navLink = (p, root, [h, t]) => `<a href="${root}${h}"${p.path === h ? ' aria-current="page"' : ''}>${t}</a>`;
 const radio = (name, legend, options) => `<fieldset><legend>${legend}</legend>${options.map(([v, t], i) => `<label><input type="radio" name="${name}" value="${v}"${i ? '' : ' checked'}> ${t}</label>`).join('')}</fieldset>`;

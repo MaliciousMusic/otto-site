@@ -36,6 +36,10 @@ Règles du site : une cellule verte exige un résultat enregistré, chaque résu
 
 Dépôt privé Powii, branche `research/g02-semantic-identifiability-v1` (G02-MEASUREMENT-V1 n'est pas dans `main`), état au 2 octobre 2026.
 
+## Film
+
+Texte et ordre des scènes : `src/data/film.js` (français puis anglais). Dessins et lecteur : `src/js/film.js`. Voix française : `node tools/film_voice.mjs fr` avec Piper et la voix `fr_FR-siwis-medium` dans `~/.local/share/piper/` (chemins réglables par `PIPER` et `VOICE_fr`). Une ligne modifiée est réenregistrée seule ; le lecteur ne joue que l'audio dont l'empreinte correspond au texte affiché.
+
 ## Police Otto Cells
 
 Dessinée en code : `python3 tools/font/build.py` (versions dans `tools/font/requirements.txt`) écrit `src/assets/fonts/otto-cells-vf.woff2`.

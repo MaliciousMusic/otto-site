@@ -166,6 +166,33 @@ function observer() {
   table('observer-table', ['Observer', 'Counted, start 4', 'Counted, start 92', 'Changed verdict'], EYES.map(([k, l]) => [l, R.observer['4'].filter((p) => p[k]).length, R.observer['92'].filter((p) => p[k]).length, ['4', '92'].reduce((a, n) => a + R.observer[n].filter((p) => p[k] !== p[0]).length, 0)]));
 }
 
+const ARMS = [['EKW', 'All counted', 'Growing eats food, wear leaves remains'], ['ekW', 'Nothing counted', 'Matter appears and vanishes freely'],
+  ['eKW', 'Remains only', 'Wear leaves remains, growing is free'], ['EkW', 'Eating only', 'Growing eats food, wear leaves nothing']];
+function twins() {
+  const root = $('twins-chart'), read = $('twins-read'), T = R.twin, pct = (x) => `${(100 * x).toFixed(1)}%`, TOP = .3;
+  const bar = (label, sub, n, lo, hi, cls) => {
+    const row = h('div', `twrow ${cls}`), name = h('div', 'twname'); name.append(h('strong', '', label), h('span', '', sub));
+    const track = h('div', 'twtrack'); track.setAttribute('role', 'img');
+    const fill = h('i', 'twfill'), ci = h('b', 'twci');
+    fill.style.width = `${(100 * n / T.laws / TOP).toFixed(2)}%`;
+    if (lo !== undefined) { ci.style.left = `${(100 * lo / TOP).toFixed(2)}%`; ci.style.width = `${(100 * (hi - lo) / TOP).toFixed(2)}%`; track.append(ci); }
+    track.prepend(fill);
+    track.setAttribute('aria-label', `${label}: ${n} of ${T.laws} laws${lo !== undefined ? `, interval ${pct(lo)} to ${pct(hi)}` : ''}`);
+    hover(track, () => `${n} of ${T.laws} laws`, () => (lo !== undefined ? `Exact 97.5% interval ${pct(lo)} to ${pct(hi)}` : label));
+    row.append(name, track, h('span', 'twn', n)); return row;
+  };
+  const views = {
+    wear: () => { read.textContent = `With wear, matter counted: ${T.yields.EKW[0]} laws. Nothing counted: ${T.yields.ekW[0]}. Each half alone does worse than nothing.`;
+      return ARMS.map(([k, l, d]) => bar(l, d, T.yields[k][0], T.yields[k][1], T.yields[k][2], k === 'EKW' ? 'g' : k === 'ekW' ? 'b' : 'r')); },
+    nowear: () => { read.textContent = 'Without wear, no law passes the screen in any of the four worlds. Nothing is lost, so nothing needs remaking.';
+      return ARMS.map(([k, l, d]) => bar(l, `${d}, no wear`, T.screen[k.slice(0, 2) + 'w'], undefined, undefined, 'r')); },
+    pair: () => { read.textContent = `Same law, both worlds: ${T.onlyCounted} pass only when counted, ${T.onlyUncounted} only when not. Difference ${pct(T.interval[0])} to ${pct(T.interval[1])}, all above zero.`;
+      return [bar('Only when counted', 'Same law, same seeds', T.onlyCounted, undefined, undefined, 'g'), bar('Only when not counted', 'Same law, same seeds', T.onlyUncounted, undefined, undefined, 'b')]; },
+  };
+  toggle($('twins-view'), [['wear', 'Four worlds'], ['pair', 'Same law'], ['nowear', 'No wear']], (v) => root.replaceChildren(...views[v]()))('wear');
+  table('twins-table', ['World', 'Laws confirmed (of 600)', 'Exact 97.5% interval', 'Hold at 96×96', 'Pass screen without wear'], ARMS.map(([k, l]) => [l, T.yields[k][0], `${pct(T.yields[k][1])} to ${pct(T.yields[k][2])}`, `${T.held96[k][0]} of ${T.held96[k][1]}`, T.screen[k.slice(0, 2) + 'w']]));
+}
+
 function glance() {
   const rows = [...document.querySelectorAll('#gl-table tbody tr')], n = (v) => rows.filter((r) => r.dataset.v === v).length;
   toggle($('gl-filter'), [['all', `All ${rows.length}`], ['holds', `Holds ${n('holds')}`], ['toy', `Toy ${n('toy')}`], ['rejected', `Rejected ${n('rejected')}`], ['waiting', `Upcoming ${n('waiting')}`]],
@@ -174,7 +201,7 @@ function glance() {
 
 export function results() {
   glance();
-  const turnOn = law(); orders(); poke(); org(); observer();
+  const turnOn = law(); orders(); poke(); org(); observer(); twins();
   const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { io.disconnect(); setTimeout(turnOn, 900); } }, { threshold: .6 });
   io.observe($('law-chart'));
 }

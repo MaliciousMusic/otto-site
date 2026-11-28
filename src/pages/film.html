@@ -1,0 +1,24 @@
+<!--{"path":"film/","title":"The film: Otto, its goal and its research, explained slowly","short":"Film","description":"An animated film about Otto: why the project exists, how we test, what we measured, twin worlds that count matter, the map of possible answers, and where Otto honestly stands.","schema":"film","next":["map/","The map"]}-->
+<section class="phead">
+  <h1 class="alive">Otto, the film</h1>
+  <p class="lead">The whole project, explained slowly: why, how, what we found and what we don’t know. Each diagram comes with a metaphor. Narrated in French, captions in French or English. Every number comes from the record.</p>
+  <p class="note" id="film-time"></p>
+</section>
+<section id="film" class="film" aria-label="Film player" tabindex="-1">
+  <div id="film-stage" class="film-stage"></div>
+  <p id="film-cap" class="film-cap" aria-live="polite"></p>
+  <div class="film-track" aria-hidden="true"><i id="film-bar"></i></div>
+  <div class="film-ctl">
+    <button type="button" class="btn small ghost" id="film-prev">‹ Back</button>
+    <button type="button" class="btn small" id="film-play" aria-pressed="false">Play</button>
+    <button type="button" class="btn small ghost" id="film-next">Next ›</button>
+    <div class="seg" id="film-lang" role="group" aria-label="Language"></div>
+    <button type="button" class="btn small ghost" id="film-voice-b">Voice off</button>
+  </div>
+  <p class="note" id="film-voice"></p>
+  <nav class="film-chapters" id="film-chapters" aria-label="Scenes"></nav>
+  <details class="film-text"><summary>Read the whole script</summary><div id="film-transcript"></div></details>
+  <p class="note wide">The film follows the site’s rule: each result keeps its limit next to it. The map of possible answers and the proposed path are design documents, not results. Keyboard: space to play or pause, arrows to move between lines.</p>
+  <p class="note wide">French narration synthesised with Piper and the “siwis” voice, trained on the SIWIS French Speech Synthesis Database (CC BY 4.0, University of Edinburgh). English captions are read by your browser’s voice when it has one.</p>
+  <noscript><p>The film needs JavaScript. The same story is told in plain text on <a href="{{root}}map/">the map</a> and <a href="{{root}}results/">the results</a>.</p></noscript>
+</section>
